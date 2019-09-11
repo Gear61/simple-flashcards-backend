@@ -19,14 +19,6 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/db', function (request, response) {
-	client.connect();
-	client.query('SELECT NOW()', (err, res) => {
-  		response.send(res.rows[0]);
-  		client.end();
-	})
-});
-
 function getDatabaseClient() {
 	return new Client({
 		user: 'bwptlpjywkcdqm',
