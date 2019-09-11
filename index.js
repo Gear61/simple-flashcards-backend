@@ -5,6 +5,12 @@ var FB = require('fb');
 // PostgreSQL client
 const { Client } = require('pg');
 
+const { Pool } = require('pg');
+const pool = new Pool({
+	connectionString: process.env.DATABASE_URL,
+	ssl: true
+});
+
 // Oauth client for Google login
 const {OAuth2Client} = require('google-auth-library');
 const GOOGLE_CLIENT_ID = "956612316816-n23cs49obd4fmn1qgs4abhqs7t3f6fnd.apps.googleusercontent.com";
@@ -34,10 +40,10 @@ app.post('/onboarding/facebook', function(request, response) {
 	var access_token = request.body.access_token;
 
 	FB.setAccessToken(access_token);
-    FB.api('me', { fields: ['name', 'email', 'picture.type(large)'] }, function (user_info) {
-	  	if(!user_info || user_info.error) {
-	    	response.status(400);
-		    response.send({'error': user_info.error});
+	FB.api('me', { fields: ['name', 'email', 'picture.type(large)'] }, function (user_info) {
+		if(!user_info || user_info.error) {
+			response.status(400);
+			response.send({'error': user_info.error});
 			return;
 		}
 
@@ -48,23 +54,38 @@ app.post('/onboarding/facebook', function(request, response) {
 	});
 });
 
+app.get('/db', async (request, response) => {
+	try {
+		console.log(process.env.DATABASE_URL)
+		const client = await pool.connect();
+		const result = await client.query('SELECT * FROM Account');
+		const results = { 'results': (result) ? result.rows : null};
+		response.send(results);
+		console.log(results)
+		client.release();
+	} catch (err) {
+		console.error(err);
+		res.send("Error " + err);
+	}
+})
+
 async function createAccount(name, email, profile_picture_url, login_type, response) {
 	const insert_query = 'INSERT INTO Account(name, email, profile_picture_url, login_type) ' +
-						 'VALUES($1, $2, $3, $4) RETURNING name, email, profile_picture_url'
+	'VALUES($1, $2, $3, $4) RETURNING name, email, profile_picture_url'
 	const values = [name, email, profile_picture_url, login_type];
 
 	const client = getDatabaseClient();
 	client.connect();
 	client.query(insert_query, values)
-		.then(res => {
-			response.send(res.rows[0]);
-		})
-		.catch(e => {
-			console.error(e.stack)
-			response.status(500);
-			var error = {'error': 'internal_server_error'};
-			response.send(error);
-		});
+	.then(res => {
+		response.send(res.rows[0]);
+	})
+	.catch(e => {
+		console.error(e.stack)
+		response.status(500);
+		var error = {'error': 'internal_server_error'};
+		response.send(error);
+	});
 }
 
 app.post('/onboarding/google', function(request, response) {
@@ -73,7 +94,7 @@ app.post('/onboarding/google', function(request, response) {
 });
 
 async function verifyGoogleToken(token, response) {
-  	const ticket = await google_oauth_client.verifyIdToken({
+	const ticket = await google_oauth_client.verifyIdToken({
 		idToken: token,
 		audience: GOOGLE_CLIENT_ID,
 	});
@@ -92,8 +113,8 @@ async function signUp(name, email, profile_picture_url, login_type, response) {
 	const client = getDatabaseClient();
 	client.connect();
 	client.query(account_query, values)
-		.then(res => {
-			client.end();
+	.then(res => {
+		client.end();
 
 			// Account doesn't exist yet; create it and return
 			if (res.rows.length == 0) {
@@ -111,12 +132,12 @@ async function signUp(name, email, profile_picture_url, login_type, response) {
 				}
 			}
 		})
-		.catch(e => {
-			console.error(e.stack)
-			response.status(500);
-			var error = {'error': 'internal_server_error'};
-			response.send(error);
-		});
+	.catch(e => {
+		console.error(e.stack)
+		response.status(500);
+		var error = {'error': 'internal_server_error'};
+		response.send(error);
+	});
 }
 
 app.post('/onboarding/login', function(request, response) {
@@ -131,5 +152,5 @@ app.post('/onboarding/signup', function(request, response) {
 });
 
 app.listen(app.get('port'), function() {
-  	console.log('Node app is running on port', app.get('port'));
+	console.log('Node app is running on port', app.get('port'));
 });
