@@ -1,8 +1,0 @@
-{
-  "name": "Journeys Back-end",
-  "description": "REST API which powers the Journeys app",
-  "repository": "https://github.com/Gear61/journey-backend",
-  "logo": "https://cdn.jsdelivr.net/gh/heroku/node-js-getting-started/public/node.svg",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
-}
