@@ -53,21 +53,6 @@ app.post('/onboarding/facebook', function(request, response) {
 	});
 });
 
-app.get('/db', async (request, response) => {
-	try {
-		console.log(process.env.DATABASE_URL)
-		const client = await pool.connect();
-		const result = await client.query('SELECT * FROM Account');
-		const results = { 'results': (result) ? result.rows : null};
-		response.send(results);
-		console.log(results)
-		client.release();
-	} catch (err) {
-		console.error(err);
-		res.send("Error " + err);
-	}
-})
-
 async function createAccount(name, email, profile_picture_url, login_type, response) {
 	const insert_query = 'INSERT INTO Account(name, email, profile_picture_url, login_type) ' +
 	'VALUES($1, $2, $3, $4) RETURNING name, email, profile_picture_url'
