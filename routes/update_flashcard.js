@@ -29,7 +29,6 @@ module.exports = function(app) {
 			.catch(exception => {
 				console.error(exception.stack)
 				response.status(500);
-				var error = {'error': 'internal_server_error'};
 				response.send(error);
 			});
 
@@ -37,7 +36,6 @@ module.exports = function(app) {
 		} catch (exception) {
 			console.error(exception.stack)
 			response.status(500);
-			var error = {'error': 'internal_server_error'};
 			response.send(error);
 		}
 	});

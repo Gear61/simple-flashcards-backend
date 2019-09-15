@@ -5,22 +5,25 @@ const pool = new Pool({
 });
 
 module.exports = function(app) {
-	app.post('/flashcard_set/create', async (request, response) => {
+	app.post('/flashcard_set/update', async (request, response) => {
 		try {
 			var requestBody = request.body;
 			
-			var userId = requestBody['user_id'];
-			var quizletSetId = requestBody['quizlet_set_id'];
+			var setId = requestBody['set_id'];
 			var setName = requestBody['set_name'];
+			var termsLanguage = requestBody['terms_language'];
+			var definitionsLanguage = requestBody['definitions_language'];
 
-			const insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name) ' +
-			'VALUES($1, $2, $3) RETURNING id'
-			const values = [userId, quizletSetId, setName];
+			const updateQuery = 'UPDATE FlashcardSet ' +
+			'SET name = $1, terms_language = $2, definitions_language = $3 ' +
+			'WHERE id = $4'
+			const values = [setName, termsLanguage, definitionsLanguage, setId];
 
 			const client = await pool.connect();
-			client.query(insertQuery, values)
+			client.query(updateQuery, values)
 			.then(res => {
-				response.send(res.rows[0]);
+				response.status(200);
+				response.send();
 			})
 			.catch(exception => {
 				console.error(exception.stack)
