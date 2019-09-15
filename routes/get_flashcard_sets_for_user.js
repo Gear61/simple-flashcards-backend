@@ -3,6 +3,7 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true
 });
+const async = require("async");
 
 module.exports = function(app) {
 	app.post('/user/fetch_sets', async (request, response) => {
@@ -17,24 +18,56 @@ module.exports = function(app) {
 			client.query(query, values)
 			.then(res => {
 				var setsResponse = [];
-				for (var i = 0; i < res.rows.length; i++) {
+				async.forEachOf(res.rows, function (dataElement, i, inner_callback){
+					const setId = dataElement['id'];
 					var setToAdd = {
-						'id': res.rows[i]['id'],
-						'quizlet_set_id': res.rows[i]['quizlet_set_id'],
-						'name': res.rows[i]['name'],
-						'terms_language': res.rows[i]['terms_language'],
-						'definitions_language': res.rows[i]['definitions_language']
+						'id': setId,
+						'quizlet_set_id': dataElement['quizlet_set_id'],
+						'name': dataElement['name'],
+						'terms_language': dataElement['terms_language'],
+						'definitions_language': dataElement['definitions_language']
 					};
-					setsResponse.push(setToAdd);
-				}
-				response.send(setsResponse);
+
+					const flashcardQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1'
+					const flashcardValues = [setId];
+
+					client.query(flashcardQuery, flashcardValues)
+					.then(flashcardResults => {
+						var flashcardsList = [];
+						for (var i = 0; i < flashcardResults.rows.length; i++) {
+							var flashcardToAdd = {
+								'id': flashcardResults.rows[i]['id'],
+								'term': flashcardResults.rows[i]['term'],
+								'definition': flashcardResults.rows[i]['definition'],
+								'term_image_url': flashcardResults.rows[i]['term_image_url'],
+								'definition_image_url': flashcardResults.rows[i]['definition_image_url'],
+								'learned': flashcardResults.rows[i]['learned'],
+								'position': flashcardResults.rows[i]['position']
+							};
+							flashcardsList.push(flashcardToAdd);
+						}
+						setToAdd['flashcards'] = flashcardsList;
+						setsResponse.push(setToAdd);
+						inner_callback();
+					})
+					.catch(exception => {
+						inner_callback(exception);
+					});
+				}, function(err) {
+					if(err) {
+						console.error(exception.stack)
+						response.status(500);
+						response.send();
+					} else {
+						response.send(setsResponse);
+					}
+				});
 			})
 			.catch(exception => {
 				console.error(exception.stack)
 				response.status(500);
 				response.send();
 			});
-
 			client.release();
 		} catch (exception) {
 			console.error(exception.stack)
