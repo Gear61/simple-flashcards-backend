@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "f6f2a626-e122-43ae-b23c-a3e38a3de57a",
+		"name": "Simple Flashcards (Local)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all accounts (test only)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/db",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create flashcard set (Name only)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": 1,\n\t\"set_name\": \"The Facebook\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create flashcard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "set_id",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "term",
+							"value": "What is the square root of 4?",
+							"type": "text"
+						},
+						{
+							"key": "definition",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "flashcard_id",
+							"value": "14",
+							"type": "text"
+						},
+						{
+							"key": "term",
+							"value": "This is now updated!",
+							"type": "text"
+						},
+						{
+							"key": "definition",
+							"value": "Huzzah good friend!",
+							"type": "text"
+						},
+						{
+							"key": "term_image_url",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "definition_image_url",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete flashcard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "flashcard_id",
+							"value": "14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch sets for user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/fetch_sets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"fetch_sets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch flashcards in set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "set_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/fetch_cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"fetch_cards"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
