@@ -20,6 +20,7 @@
     "pg": "7.4.0"
   },
   "devDependencies": {
+    "nodemon": "^1.19.2",
     "request": "^2.81.0",
     "tape": "^4.7.0"
   },

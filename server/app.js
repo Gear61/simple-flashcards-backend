@@ -19,7 +19,6 @@ const google_oauth_client = new OAuth2Client(GOOGLE_CLIENT_ID);
 // POST body parsing
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 require('./routes')(app);

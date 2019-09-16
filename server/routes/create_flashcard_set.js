@@ -24,11 +24,23 @@ module.exports = function(app) {
 				const { rows } = await client.query(insertQuery, values);
 				const setId = rows[0]['id'];
 
+				if (flashcardsList && flashcardsList.length > 0) {
+					console.log(flashcardsList.length);
+					console.log(flashcardsList[0]);
+					console.log(flashcardsList[1]);
+					console.log("Flashcards list passed in!");
+				} else {
+					console.log("Flashcards list null or empty!");
+				}
+
 				await client.query('COMMIT');
 
 				var addedSet = {
 					'id': setId
 				};
+				if (flashcardsList) {
+
+				}
 				response.send(addedSet);
 			} catch (e) {
 				await client.query('ROLLBACK')
