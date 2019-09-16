@@ -17,13 +17,19 @@ module.exports = function(app) {
 			const client = await pool.connect();
 			try {
 				await client.query('BEGIN');
+
 				const insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name) ' +
 				'VALUES($1, $2, $3) RETURNING id';
 				const values = [userId, quizletSetId, setName];
 				const { rows } = await client.query(insertQuery, values);
+				const setId = rows[0]['id'];
+
 				await client.query('COMMIT');
 
-				response.send(rows[0]);
+				var addedSet = {
+					'id': setId
+				};
+				response.send(addedSet);
 			} catch (e) {
 				await client.query('ROLLBACK')
 				throw e
