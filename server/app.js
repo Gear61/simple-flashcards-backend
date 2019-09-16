@@ -1,6 +1,6 @@
-var express = require('express');
-var app = express();
-var FB = require('fb');
+const express = require('express');
+const app = express();
+const FB = require('fb');
 
 // PostgreSQL client
 const { Client } = require('pg');
@@ -17,7 +17,7 @@ const GOOGLE_CLIENT_ID = "956612316816-n23cs49obd4fmn1qgs4abhqs7t3f6fnd.apps.goo
 const google_oauth_client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 // POST body parsing
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', (process.env.PORT || 5000));
@@ -36,7 +36,7 @@ function getDatabaseClient() {
 }
 
 app.post('/onboarding/facebook', function(request, response) {
-	var access_token = request.body.access_token;
+	const access_token = request.body.access_token;
 
 	FB.setAccessToken(access_token);
 	FB.api('me', { fields: ['name', 'email', 'picture.type(large)'] }, function (user_info) {
@@ -46,9 +46,9 @@ app.post('/onboarding/facebook', function(request, response) {
 			return;
 		}
 
-		var name = user_info.name;
-		var email = user_info.email;
-		var profile_picture_url = user_info.picture.data.url;
+		const name = user_info.name;
+		const email = user_info.email;
+		const profile_picture_url = user_info.picture.data.url;
 		signUp(name, email, profile_picture_url, 'FACEBOOK', response);
 	});
 });
@@ -67,13 +67,13 @@ async function createAccount(name, email, profile_picture_url, login_type, respo
 	.catch(e => {
 		console.error(e.stack)
 		response.status(500);
-		var error = {'error': 'internal_server_error'};
+		const error = {'error': 'internal_server_error'};
 		response.send(error);
 	});
 }
 
 app.post('/onboarding/google', function(request, response) {
-	var id_token = request.body.id_token;
+	const id_token = request.body.id_token;
 	verifyGoogleToken(id_token, response).catch(console.error);
 });
 
@@ -84,9 +84,9 @@ async function verifyGoogleToken(token, response) {
 	});
 	const payload = ticket.getPayload();
 
-	var name = payload.name;
-	var email = payload.email;
-	var profile_picture_url = payload.picture
+	const name = payload.name;
+	const email = payload.email;
+	const profile_picture_url = payload.picture
 	signUp(name, email, profile_picture_url, 'GOOGLE', response);
 }
 
@@ -111,7 +111,7 @@ async function signUp(name, email, profile_picture_url, login_type, response) {
 				} else {
 					console.log("Email already used, can't create with " + login_type);
 					response.status(401);
-					var error = {'error': 'email_in_use'};
+					const error = {'error': 'email_in_use'};
 					response.send(error);
 				}
 			}
@@ -119,20 +119,20 @@ async function signUp(name, email, profile_picture_url, login_type, response) {
 	.catch(e => {
 		console.error(e.stack)
 		response.status(500);
-		var error = {'error': 'internal_server_error'};
+		const error = {'error': 'internal_server_error'};
 		response.send(error);
 	});
 }
 
 app.post('/onboarding/login', function(request, response) {
-	var email = request.body.email;
-	var password = request.body.password;
+	const email = request.body.email;
+	const password = request.body.password;
 });
 
 app.post('/onboarding/signup', function(request, response) {
-	var name = request.body.name;
-	var email = request.body.email;
-	var password = request.body.password;
+	const name = request.body.name;
+	const email = request.body.email;
+	const password = request.body.password;
 });
 
 app.listen(app.get('port'), function() {
