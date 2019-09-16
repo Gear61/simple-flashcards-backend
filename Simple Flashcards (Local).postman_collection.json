@@ -6,25 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Get all accounts (test only)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/db",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"db"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Create flashcard set (Name only)",
 			"request": {
 				"method": "POST",
@@ -32,13 +13,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": 1,\n\t\"set_name\": \"The Facebook\"\n}"
+					"raw": "{\n\t\"user_id\": 1,\n\t\"set_name\": \"Postman Test Set\",\n\t\"quizlet_set_id\": 943243\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/create",
@@ -63,29 +44,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "set_id",
-							"value": "500",
-							"type": "text"
-						},
-						{
-							"key": "term",
-							"value": "What is the square root of 4?",
-							"type": "text"
-						},
-						{
-							"key": "definition",
-							"value": "2",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 17,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -110,39 +75,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "flashcard_id",
-							"value": "14",
-							"type": "text"
-						},
-						{
-							"key": "term",
-							"value": "This is now updated!",
-							"type": "text"
-						},
-						{
-							"key": "definition",
-							"value": "Huzzah good friend!",
-							"type": "text"
-						},
-						{
-							"key": "term_image_url",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "definition_image_url",
-							"value": "",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\t\"flashcard_id\": 10,\n\t\"term\": \"This is now updated!\",\n\t\"definition\": \"This is also now updated!\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/update",
@@ -167,19 +106,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "flashcard_id",
-							"value": "14",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\t\"flashcard_id\": 10\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/delete",
@@ -204,19 +137,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"type": "text",
-						"value": "application/x-www-form-urlencoded"
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "user_id",
-							"value": "1",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": 1\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/user/fetch_sets",
@@ -241,19 +168,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "set_id",
-							"value": "1",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 1\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/fetch_cards",
@@ -265,6 +186,99 @@
 					"path": [
 						"flashcard_set",
 						"fetch_cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 1,\n\t\"set_name\": \"Updated title\",\n\t\"terms_language\": 0,\n\t\"definitions_language\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete flashcard set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 16\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard positions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"flashcards\": [\n\t   {\n\t      \"flashcard_id\":5,\n\t      \"position\":0\n\t   },\n\t   {\n\t      \"flashcard_id\":6,\n\t      \"position\":1\n\t   }\n   ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/update_positions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"update_positions"
 					]
 				}
 			},
