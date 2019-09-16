@@ -12,23 +12,24 @@ module.exports = function(app) {
 			var userId = requestBody['user_id'];
 			var quizletSetId = requestBody['quizlet_set_id'];
 			var setName = requestBody['set_name'];
-
-			const insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name) ' +
-			'VALUES($1, $2, $3) RETURNING id'
-			const values = [userId, quizletSetId, setName];
+			var flashcardsList = requestBody['flashcards'];
 
 			const client = await pool.connect();
-			client.query(insertQuery, values)
-			.then(res => {
-				response.send(res.rows[0]);
-			})
-			.catch(exception => {
-				console.error(exception.stack)
-				response.status(500);
-				response.send(error);
-			});
+			try {
+				await client.query('BEGIN');
+				const insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name) ' +
+				'VALUES($1, $2, $3) RETURNING id';
+				const values = [userId, quizletSetId, setName];
+				const { rows } = await client.query(insertQuery, values);
+				await client.query('COMMIT');
 
-			client.release();
+				response.send(rows[0]);
+			} catch (e) {
+				await client.query('ROLLBACK')
+				throw e
+			} finally {
+				client.release()
+			}
 		} catch (exception) {
 			console.error(exception.stack)
 			response.status(500);

@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS FlashcardSet (
 	user_id INT,
 	quizlet_set_id BIGINT,
 	name varchar(256),
-	terms_language INT,
-	definitions_language INT
+	terms_language INT DEFAULT 0,
+	definitions_language INT DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS Flashcard (
@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS Flashcard (
 	definition varchar(4096),
 	term_image_url varchar(512),
 	definition_image_url varchar(512),
-	learned BOOLEAN,
-	position INT
+	learned BOOLEAN DEFAULT FALSE,
+	position INT DEFAULT 0
 );
