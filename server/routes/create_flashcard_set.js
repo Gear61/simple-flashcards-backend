@@ -24,23 +24,40 @@ module.exports = function(app) {
 				const { rows } = await client.query(insertQuery, values);
 				const setId = rows[0]['id'];
 
-				if (flashcardsList && flashcardsList.length > 0) {
-					console.log(flashcardsList.length);
-					console.log(flashcardsList[0]);
-					console.log(flashcardsList[1]);
-					console.log("Flashcards list passed in!");
-				} else {
-					console.log("Flashcards list null or empty!");
-				}
-
-				await client.query('COMMIT');
-
 				var addedSet = {
 					'id': setId
 				};
-				if (flashcardsList) {
 
+				if (flashcardsList && flashcardsList.length > 0) {
+					addedSet['flashcards'] = [];
+					for (var i = 0; i < flashcardsList.length; i++) {
+						const term = flashcardsList[i]['term'];
+						const definition = flashcardsList[i]['definition'];
+						const termImageUrl = flashcardsList[i]['term_image_url'];
+						const definitionImageUrl = flashcardsList[i]['definition_image_url'];
+
+						const flashcardQuery = 'INSERT INTO Flashcard ' +
+						'(term, definition, term_image_url, definition_image_url) ' + 
+						'VALUES($1, $2, $3, $4) RETURNING id';
+						const flashcardValues = [term, definition, termImageUrl, definitionImageUrl];
+
+						const result = await client.query(flashcardQuery, flashcardValues);
+						const flashcardId = result.rows[0]['id'];
+						var addedFlashcard = {
+							'id': flashcardId,
+							'term': term,
+							'definition': definition,
+							'term_image_url': termImageUrl,
+							'definition_image_url': definitionImageUrl,
+							'learned': false,
+							'position': 0
+						};
+
+						addedSet['flashcards'].push(addedFlashcard);
+					}
 				}
+
+				await client.query('COMMIT');
 				response.send(addedSet);
 			} catch (e) {
 				await client.query('ROLLBACK')
@@ -51,7 +68,7 @@ module.exports = function(app) {
 		} catch (exception) {
 			console.error(exception.stack)
 			response.status(500);
-			response.send(error);
+			response.send(exception);
 		}
 	});
 }
