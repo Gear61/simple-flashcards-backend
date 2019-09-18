@@ -3,26 +3,34 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true
 });
-const FB = require('fb');
+
+const {OAuth2Client} = require('google-auth-library');
+const GOOGLE_CLIENT_ID = "336743094335-5i9gndd0b8so6dp727jgeaf00co2elms.apps.googleusercontent.com";
+const google_oauth_client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 module.exports = function(app) {
-	app.post('/onboarding/facebook', function(request, response) {
-		const accessToken = request.body['access_token'];
-
-		FB.setAccessToken(accessToken);
-		FB.api('me', { fields: ['name', 'email', 'picture.type(large)'] }, function (user_info) {
-			if(!user_info || user_info.error) {
-				response.status(400);
-				response.send({'error': user_info.error});
-				return;
-			}
-
-			const name = user_info.name;
-			const email = user_info.email;
-			const profilePictureUrl = user_info.picture.data.url;
-			signUp(name, email, profilePictureUrl, 'FACEBOOK', response);
+	app.post('/onboarding/google', function(request, response) {
+		const idToken = request.body['id_token'];
+		verifyGoogleToken(idToken, response)
+		.catch(exception => {
+			console.error(exception.stack)
+			response.status(500);
+			response.send();
 		});
 	});
+}
+
+async function verifyGoogleToken(token, response) {
+	const ticket = await google_oauth_client.verifyIdToken({
+		idToken: token,
+		audience: GOOGLE_CLIENT_ID,
+	});
+	const payload = ticket.getPayload();
+
+	const name = payload.name;
+	const email = payload.email;
+	const profilePictureUrl = payload.picture
+	signUp(name, email, profilePictureUrl, 'GOOGLE', response);
 }
 
 async function signUp(name, email, profilePictureUrl, loginType, response) {
