@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Create flashcard set (Name only)",
+			"name": "Create flashcard set",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -15,11 +15,16 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": 1,\n\t\"set_name\": \"Postman Test Set\",\n\t\"quizlet_set_id\": 943243\n}"
+					"raw": "{\n\t\"set_name\": \"Postman Test Set\",\n\t\"quizlet_set_id\": 943243,\n\t\"flashcards\": [\n\t\t{\n\t\t\t\"term\": \"In the shallow\",\n\t\t\t\"definition\": \"We're far from the shallow now\",\n\t\t\t\"term_image_url\": \"www.pusheen.com\"\n\t\t},\n\t\t{\n\t\t\t\"term\": \"I'm off the deep end\",\n\t\t\t\"definition\": \"Watch as I dive in\",\n\t\t\t\"definition_image_url\": \"www.mamegoma.com\"\n\t\t}\n\t]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/create",
@@ -46,11 +51,16 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 17,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419\n}"
+					"raw": "{\n\t\"set_id\": 16,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -76,6 +86,11 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
@@ -108,6 +123,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -137,13 +157,18 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"user_id\": 1\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:5000/user/fetch_sets",
@@ -174,7 +199,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 1\n}"
+					"raw": "{\n\t\"set_id\": 16\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/fetch_cards",
@@ -200,6 +225,11 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
@@ -232,6 +262,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -263,11 +298,16 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"flashcards\": [\n\t   {\n\t      \"flashcard_id\":5,\n\t      \"position\":0\n\t   },\n\t   {\n\t      \"flashcard_id\":6,\n\t      \"position\":1\n\t   }\n   ]\n}"
+					"raw": "[\n   {\n      \"flashcard_id\":5,\n      \"position\":1\n   },\n   {\n      \"flashcard_id\":6,\n      \"position\":0\n   }\n]"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/update_positions",
@@ -279,6 +319,68 @@
 					"path": [
 						"flashcard",
 						"update_positions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with Facebook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"access_token\": \"EAAXLpxikOi0BAN48N0ZB98qFlRNlVUNYaTL9f3ZCua3fKZCpRlGm8M6Pwk2Rgr5mXm0yXXQ1n68uI7bPf0ChIaDpCqzH8uZBnyfnp9pbbRrsgzRPpFr6BLSUtWViEGiWAH5TEYwoqBax6HY29Uk4pNlBMFWBCPauTdxcrYmlSmEQ3TJ3ByiDtpcXSuoa9jvEbC9XXc9klEcZCNatPJS70vKj4ZAR9AO70lj12hThy9hAZDZD\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/onboarding/facebook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"onboarding",
+						"facebook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with Google",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiZjg0MThiMjk2M2YzNjZmNWZlZmRkMTI3YjJjZWUwN2M4ODdlNjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMzY3NDMwOTQzMzUtbXI4YjJoODcydTk2ZDUzY2MzMGgyZGVpdjVsamtoZW8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzMzY3NDMwOTQzMzUtNWk5Z25kZDBiOHNvNmRwNzI3amdlYWYwMGNvMmVsbXMuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDUyMzU5ODY4MTI2MzcyNDAzMzciLCJlbWFpbCI6InJhbmRvbWFwcHNpbmM2MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsZXggQ2hpb3UiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1BUWZFOVhhcjU0TS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BQ0hpM3JkUGJqTlkyZ0lBd0J1T0NlNWtBMGhDUmQ2c25RL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbGV4IiwiZmFtaWx5X25hbWUiOiJDaGlvdSIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNTY4NzkwNzA5LCJleHAiOjE1Njg3OTQzMDl9.dr8urbFje8qGo-FY3GuFStg3zXHnXpP0pmjS33BP3RX1scTF8yneA9cSH1XxXTFDTVOMe25zcl5VHkjf7fSIy8IeZAwNg4MxhQ5l3eUIQr7LIzlGhb6OeSD2b69eWBZJcsCNFLkGKl693XacBBe1q3wqkYOHUtYEafOOQweBlV4t2V1KbVMosXVj5tQGwSRxrLUH3qxE9VlX9dJzZgT_4C0AEx1paRqVjwnxrzOZc8qHj6CFlPV9ILwY-FNz9XT8fBYmih6Oe_Ra-JmJaPUQG8-HiLCwgQN66uu2VKgg9dXRNvk1hJKiZgClFb6GxBZUJ1-uRHHQwm-xlfsT0jX1cg\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/onboarding/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"onboarding",
+						"google"
 					]
 				}
 			},
