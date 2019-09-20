@@ -3,10 +3,19 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true
 });
+const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
 	app.post('/flashcard/create', async (request, response) => {
 		try {
+			var authToken = request.header('auth_token');
+			var expandedToken = authHelper.verify(authToken);
+			if (!expandedToken) {
+				response.status(401);
+				response.send();
+				return;
+			}
+
 			var requestBody = request.body;
 			var setId = requestBody['set_id'];
 			const setQuery = 'SELECT * FROM FlashcardSet WHERE id = $1';

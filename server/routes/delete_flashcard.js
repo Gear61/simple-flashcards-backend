@@ -3,10 +3,19 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true
 });
+const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
 	app.post('/flashcard/delete', async (request, response) => {
 		try {
+			var authToken = request.header('auth_token');
+			var expandedToken = authHelper.verify(authToken);
+			if (!expandedToken) {
+				response.status(401);
+				response.send();
+				return;
+			}
+
 			var requestBody = request.body;
 			var flashcardId = requestBody['flashcard_id'];
 
@@ -22,14 +31,14 @@ module.exports = function(app) {
 			.catch(exception => {
 				console.error(exception.stack)
 				response.status(500);
-				response.send(error);
+				response.send();
 			});
 
 			client.release();
 		} catch (exception) {
 			console.error(exception.stack)
 			response.status(500);
-			response.send(error);
+			response.send();
 		}
 	});
 }

@@ -3,13 +3,23 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true
 });
+const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
 	app.post('/flashcard_set/create', async (request, response) => {
 		try {
-			var requestBody = request.body;
+			var authToken = request.header('auth_token');
+			var expandedToken = authHelper.verify(authToken);
+			var userId;
+			if (expandedToken) {
+				userId = expandedToken['user_id'];
+			} else {
+				response.status(401);
+				response.send();
+				return;
+			}
 			
-			var userId = requestBody['user_id'];
+			var requestBody = request.body;
 			var quizletSetId = requestBody['quizlet_set_id'];
 			var setName = requestBody['set_name'];
 			var flashcardsList = requestBody['flashcards'];

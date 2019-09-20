@@ -4,12 +4,21 @@ const pool = new Pool({
 	ssl: true
 });
 const async = require("async");
+const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
 	app.post('/user/fetch_sets', async (request, response) => {
 		try {
-			var requestBody = request.body;
-			var userId = requestBody['user_id'];
+			var authToken = request.header('auth_token');
+			var expandedToken = authHelper.verify(authToken);
+			var userId;
+			if (expandedToken) {
+				userId = expandedToken['user_id'];
+			} else {
+				response.status(401);
+				response.send();
+				return;
+			}
 
 			const query = 'SELECT * FROM FlashcardSet WHERE user_id = $1'
 			const values = [userId];

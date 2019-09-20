@@ -4,10 +4,19 @@ const pool = new Pool({
 	ssl: true
 });
 const async = require("async");
+const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
 	app.post('/flashcard/update_positions', async (request, response) => {
 		try {
+			var authToken = request.header('auth_token');
+			var expandedToken = authHelper.verify(authToken);
+			if (!expandedToken) {
+				response.status(401);
+				response.send();
+				return;
+			}
+
 			const flashcardsList = request.body;
 
 			const client = await pool.connect();
