@@ -8,6 +8,8 @@ const {OAuth2Client} = require('google-auth-library');
 const GOOGLE_CLIENT_ID = "336743094335-5i9gndd0b8so6dp727jgeaf00co2elms.apps.googleusercontent.com";
 const google_oauth_client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
+const authHelper  = require(require('path').resolve(__dirname, './auth_helper.js'));
+
 module.exports = function(app) {
 	app.post('/onboarding/google', function(request, response) {
 		const idToken = request.body['id_token'];
@@ -49,7 +51,19 @@ async function signUp(name, email, profilePictureUrl, loginType, response) {
 			} else {
 				if (res.rows[0].login_type == loginType) {
 					console.log("Account already created with " + loginType);
-					response.send(res.rows[0]);
+
+					var payload = {
+						user_id: res.rows[0].id
+					}
+					var authToken = authHelper.sign(payload);
+					var responseJson = {
+						auth_token: authToken,
+						name: res.rows[0].name,
+						email: res.rows[0].email,
+						profile_picture_url: res.rows[0].profile_picture_url
+					}
+
+					response.send(responseJson);
 				} else {
 					console.log("Email already used, can't create with " + loginType);
 					response.status(401);
@@ -73,7 +87,18 @@ async function createAccount(name, email, profilePictureUrl, loginType, response
 	const client = await pool.connect();
 	client.query(insert_query, values)
 	.then(res => {
-		response.send(res.rows[0]);
+		var payload = {
+			user_id: res.rows[0].id
+		}
+		var authToken = authHelper.sign(payload);
+		var responseJson = {
+			auth_token: authToken,
+			name: res.rows[0].name,
+			email: res.rows[0].email,
+			profile_picture_url: res.rows[0].profile_picture_url
+		}
+
+		response.send(responseJson);
 	})
 	.catch(exception => {
 		console.error(exception.stack)
