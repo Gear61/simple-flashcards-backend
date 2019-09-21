@@ -6,7 +6,7 @@ const pool = new Pool({
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
-	app.post('/flashcard_set/rename', async (request, response) => {
+	app.post('/flashcard/update_term_image', async (request, response) => {
 		try {
 			var authToken = request.header('auth_token');
 			var expandedToken = authHelper.verify(authToken);
@@ -15,13 +15,13 @@ module.exports = function(app) {
 				response.send();
 				return;
 			}
-
+			
 			var requestBody = request.body;
-			var setId = requestBody['set_id'];
-			var setName = requestBody['set_name'];
+			var flashcardId = requestBody['flashcard_id'];
+			var termImageUrl = requestBody['term_image_url'];
 
-			const updateQuery = 'UPDATE FlashcardSet SET name = $1 WHERE id = $2'
-			const values = [setName, setId];
+			const updateQuery = 'UPDATE Flashcard SET term_image_url = $1 WHERE id = $2'
+			const values = [termImageUrl, flashcardId];
 
 			const client = await pool.connect();
 			client.query(updateQuery, values)
@@ -32,14 +32,14 @@ module.exports = function(app) {
 			.catch(exception => {
 				console.error(exception.stack)
 				response.status(500);
-				response.send(error);
+				response.send();
 			});
 
 			client.release();
 		} catch (exception) {
 			console.error(exception.stack)
 			response.status(500);
-			response.send(error);
+			response.send();
 		}
 	});
 }
