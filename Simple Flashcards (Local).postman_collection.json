@@ -60,7 +60,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 16,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419\n}"
+					"raw": "{\n\t\"set_id\": 4,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -72,42 +72,6 @@
 					"path": [
 						"flashcard",
 						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update flashcard",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"flashcard_id\": 10,\n\t\"term\": \"This is now updated!\",\n\t\"definition\": \"This is also now updated!\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/flashcard/update",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"flashcard",
-						"update"
 					]
 				}
 			},
@@ -195,11 +159,16 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 16\n}"
+					"raw": "{\n\t\"set_id\": 2\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/fetch_cards",
@@ -211,42 +180,6 @@
 					"path": [
 						"flashcard_set",
 						"fetch_cards"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update flashcard set",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 1,\n\t\"set_name\": \"Updated title\",\n\t\"terms_language\": 0,\n\t\"definitions_language\": 1\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/flashcard_set/update",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"flashcard_set",
-						"update"
 					]
 				}
 			},
@@ -381,6 +314,186 @@
 					"path": [
 						"onboarding",
 						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename flashcard set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 1,\n\t\"set_name\": \"Meme time\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/rename",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"rename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard set languages",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 1,\n\t\"terms_language\": 8,\n\t\"definitions_language\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/set_languages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"set_languages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard term",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flashcard_id\": 44,\n\t\"term\": \"This is now updated again!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/update_term",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"update_term"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard definition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flashcard_id\": 44,\n\t\"definition\": \"This is now updated again too!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/update_definition",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"update_definition"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard term image URL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flashcard_id\": 44,\n\t\"term_image_url\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/update_term_image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"update_term_image"
 					]
 				}
 			},
