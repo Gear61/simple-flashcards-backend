@@ -60,7 +60,8 @@ async function signUp(name, email, profilePictureUrl, loginType, response) {
 						auth_token: authToken,
 						name: res.rows[0].name,
 						email: res.rows[0].email,
-						profile_picture_url: res.rows[0].profile_picture_url
+						profile_picture_url: res.rows[0].profile_picture_url,
+						new_account: false
 					}
 
 					response.send(responseJson);
@@ -95,7 +96,8 @@ async function createAccount(name, email, profilePictureUrl, loginType, response
 			auth_token: authToken,
 			name: res.rows[0].name,
 			email: res.rows[0].email,
-			profile_picture_url: res.rows[0].profile_picture_url
+			profile_picture_url: res.rows[0].profile_picture_url,
+			new_account: true
 		}
 
 		response.send(responseJson);
