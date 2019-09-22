@@ -20,7 +20,7 @@ module.exports = function(app) {
 
 			const name = user_info.name;
 			const email = user_info.email;
-			const profilePictureUrl = "http://graph.facebook.com/" + user_info.id + "/picture?type=large";
+			const profilePictureUrl = "https://graph.facebook.com/" + user_info.id + "/picture?type=large";
 			signUp(name, email, profilePictureUrl, 'FACEBOOK', response);
 		});
 	});
