@@ -8,7 +8,7 @@ const authHelper  = require(require('path').resolve(__dirname, './auth_helper.js
 
 module.exports = function(app) {
 	app.post('/onboarding/facebook', function(request, response) {
-		const accessToken = request.body['access_token'];
+		const accessToken = request.body['auth_token'];
 
 		FB.setAccessToken(accessToken);
 		FB.api('me', { fields: ['id', 'name', 'email'] }, function (user_info) {

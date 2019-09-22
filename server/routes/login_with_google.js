@@ -12,7 +12,7 @@ const authHelper  = require(require('path').resolve(__dirname, './auth_helper.js
 
 module.exports = function(app) {
 	app.post('/onboarding/google', function(request, response) {
-		const idToken = request.body['id_token'];
+		const idToken = request.body['auth_token'];
 		verifyGoogleToken(idToken, response)
 		.catch(exception => {
 			console.error(exception.stack)
