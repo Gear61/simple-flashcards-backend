@@ -5,7 +5,7 @@ const pool = new Pool({
 });
 
 const {OAuth2Client} = require('google-auth-library');
-const GOOGLE_CLIENT_ID = "336743094335-5i9gndd0b8so6dp727jgeaf00co2elms.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "437392266366-56mfdfhjukaoqagao7a32r0juk6mt8qk.apps.googleusercontent.com";
 const google_oauth_client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 const authHelper  = require(require('path').resolve(__dirname, './auth_helper.js'));
