@@ -31,6 +31,7 @@ module.exports = function(app) {
 					'folders': []
 				};
 
+				var oldSetIdToNewIdMap = {};
 				// Insert flashcard sets into DB
 				for (var i = 0; i < setsList.length; i++) {
 					var localSetId = setsList[i]['id'];
@@ -50,6 +51,9 @@ module.exports = function(app) {
 						'new_id': serverSetId,
 						'flashcards': []
 					}
+
+					// Update the old ID -> new ID map so folder insertion can build the proper relationships
+					oldSetIdToNewIdMap[localSetId] = serverSetId;
 
 					var flashcardsList = setsList[i]['flashcards'];
 					for (var j = 0; j < flashcardsList.length; j++) {
@@ -74,6 +78,19 @@ module.exports = function(app) {
 					}
 
 					jsonResponse['flashcard_sets'].push(setToAddIntoResponse);
+				}
+
+				// Insert folders
+				var foldersList = requestBody['folders'];
+				for (var k = 0; k < foldersList.length; k++) {
+					var localFolderId = foldersList[i]['id'];
+					var folderName = foldersList[i]['name'];
+
+					var folderToAddIntoResponse = {
+						'old_id': localSetId,
+						'new_id': serverSetId,
+						'flashcards': []
+					}
 				}
 
 				await client.query('COMMIT');

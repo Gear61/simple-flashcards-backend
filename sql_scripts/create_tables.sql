@@ -27,3 +27,14 @@ CREATE TABLE IF NOT EXISTS Flashcard (
 	learned BOOLEAN DEFAULT FALSE,
 	position INT DEFAULT 0
 );
+
+CREATE TABLE IF NOT EXISTS Folder (
+	id SERIAL,
+	user_id INT,
+	name varchar(256)
+);
+
+CREATE TABLE IF NOT EXISTS FlashcardSetInFolder (
+	flashcard_set_id INT,
+	folder_id INT
+);
