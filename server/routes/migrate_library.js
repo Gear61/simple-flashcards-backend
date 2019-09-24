@@ -44,7 +44,6 @@ module.exports = function(app) {
 
 					var values = [userId, quizletSetId, setName];
 					var result = await client.query(insertQuery, values);
-					console.log(result.rows.length);
 
 					var serverSetId = result.rows[0]['id'];
 
@@ -102,6 +101,19 @@ module.exports = function(app) {
 						'new_id': serverFolderId
 					}
 					jsonResponse['folders'].push(folderToAddIntoResponse);
+
+					var localSetIds = foldersList[k]['flashcard_set_ids'];
+					for (var l = 0; l < localSetIds.length; l++) {
+						var localSetId = localSetIds[l];
+						var newSetId = oldSetIdToNewIdMap[localSetId];
+
+						// Insert folder into DB
+						var insertSetFolderRelationQuery = 'INSERT INTO FlashcardSetInFolder' +
+						'(flashcard_set_id, folder_id) VALUES($1, $2)';
+
+						var setFolderValues = [newSetId, serverFolderId];
+						await client.query(insertSetFolderRelationQuery, setFolderValues);
+					}
 				}
 
 				await client.query('COMMIT');
