@@ -33,7 +33,8 @@ module.exports = function(app) {
 
 				var oldSetIdToNewIdMap = {};
 				// Insert flashcard sets into DB
-				for (var i = 0; i < setsList.length; i++) {
+				var setListLength = setsList ? setsList.length : 0;
+				for (var i = 0; i < setListLength; i++) {
 					var localSetId = setsList[i]['id'];
 					var quizletSetId = setsList[i]['quizlet_set_id'];
 					var setName = setsList[i]['set_name'];
@@ -57,7 +58,8 @@ module.exports = function(app) {
 					oldSetIdToNewIdMap[localSetId] = serverSetId;
 
 					var flashcardsList = setsList[i]['flashcards'];
-					for (var j = 0; j < flashcardsList.length; j++) {
+					var flashcardListLength = flashcardsList ? flashcardsList.length : 0;
+					for (var j = 0; j < flashcardListLength.length; j++) {
 						var localFlashcardId = flashcardsList[j]['id'];
 						var term = flashcardsList[j]['term'];
 						var definition = flashcardsList[j]['definition'];
@@ -84,7 +86,8 @@ module.exports = function(app) {
 
 				// Insert folders
 				var foldersList = requestBody['folders'];
-				for (var k = 0; k < foldersList.length; k++) {
+				var folderListLength = foldersList ? foldersList.length : 0;
+				for (var k = 0; k < folderListLength; k++) {
 					var localFolderId = foldersList[k]['id'];
 					var folderName = foldersList[k]['name'];
 
@@ -103,7 +106,8 @@ module.exports = function(app) {
 					jsonResponse['folders'].push(folderToAddIntoResponse);
 
 					var localSetIds = foldersList[k]['flashcard_set_ids'];
-					for (var l = 0; l < localSetIds.length; l++) {
+					var setIdListLength = localSetIds ? localSetIds.length : 0;
+					for (var l = 0; l < setIdListLength.length; l++) {
 						var localSetId = localSetIds[l];
 						var newSetId = oldSetIdToNewIdMap[localSetId];
 
