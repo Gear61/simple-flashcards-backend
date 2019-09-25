@@ -59,7 +59,7 @@ module.exports = function(app) {
 
 					var flashcardsList = setsList[i]['flashcards'];
 					var flashcardListLength = flashcardsList ? flashcardsList.length : 0;
-					for (var j = 0; j < flashcardListLength.length; j++) {
+					for (var j = 0; j < flashcardListLength; j++) {
 						var localFlashcardId = flashcardsList[j]['id'];
 						var term = flashcardsList[j]['term'];
 						var definition = flashcardsList[j]['definition'];
@@ -107,7 +107,7 @@ module.exports = function(app) {
 
 					var localSetIds = foldersList[k]['flashcard_set_ids'];
 					var setIdListLength = localSetIds ? localSetIds.length : 0;
-					for (var l = 0; l < setIdListLength.length; l++) {
+					for (var l = 0; l < setIdListLength; l++) {
 						var localSetId = localSetIds[l];
 						var newSetId = oldSetIdToNewIdMap[localSetId];
 

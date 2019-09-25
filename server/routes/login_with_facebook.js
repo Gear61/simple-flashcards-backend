@@ -27,7 +27,8 @@ module.exports = function(app) {
 }
 
 async function signUp(name, email, profilePictureUrl, loginType, response) {
-	const accountQuery = 'SELECT id, name, email, profile_picture_url, login_type FROM Account WHERE email = $1';
+	const accountQuery = 'SELECT id, name, email, profile_picture_url, login_type ' +
+	'FROM Account WHERE email = $1';
 	const values = [email];
 
 	const client = await pool.connect();

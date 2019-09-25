@@ -36,7 +36,8 @@ async function verifyGoogleToken(token, response) {
 }
 
 async function signUp(name, email, profilePictureUrl, loginType, response) {
-	const accountQuery = 'SELECT id, name, email, profile_picture_url, login_type FROM Account WHERE email = $1';
+	const accountQuery = 'SELECT id, name, email, profile_picture_url, login_type '
+	+ 'FROM Account WHERE email = $1';
 	const values = [email];
 
 	const client = await pool.connect();
@@ -51,11 +52,11 @@ async function signUp(name, email, profilePictureUrl, loginType, response) {
 			} else {
 				if (res.rows[0].login_type == loginType) {
 					console.log("Account already created with " + loginType);
-
 					var payload = {
 						user_id: res.rows[0].id
 					}
 					var authToken = authHelper.sign(payload);
+					console.log("Auth token: " + authToken);
 					var responseJson = {
 						auth_token: authToken,
 						name: res.rows[0].name,
@@ -82,7 +83,7 @@ async function signUp(name, email, profilePictureUrl, loginType, response) {
 
 async function createAccount(name, email, profilePictureUrl, loginType, response) {
 	const insert_query = 'INSERT INTO Account(name, email, profile_picture_url, login_type) ' +
-	'VALUES($1, $2, $3, $4) RETURNING name, email, profile_picture_url'
+	'VALUES($1, $2, $3, $4) RETURNING id, name, email, profile_picture_url'
 	const values = [name, email, profilePictureUrl, loginType];
 
 	const client = await pool.connect();
