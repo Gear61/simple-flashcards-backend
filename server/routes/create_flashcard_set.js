@@ -47,9 +47,9 @@ module.exports = function(app) {
 						const definitionImageUrl = flashcardsList[i]['definition_image_url'];
 
 						const flashcardQuery = 'INSERT INTO Flashcard ' +
-						'(term, definition, term_image_url, definition_image_url) ' + 
-						'VALUES($1, $2, $3, $4) RETURNING id';
-						const flashcardValues = [term, definition, termImageUrl, definitionImageUrl];
+						'(flashcard_set_id, term, definition, term_image_url, definition_image_url) ' + 
+						'VALUES($1, $2, $3, $4, $5) RETURNING id';
+						const flashcardValues = [setId, term, definition, termImageUrl, definitionImageUrl];
 
 						const result = await client.query(flashcardQuery, flashcardValues);
 						const flashcardId = result.rows[0]['id'];
