@@ -24,7 +24,6 @@ module.exports = function(app) {
 				await client.query('BEGIN');
 
 				var requestBody = request.body;
-				var setsList = requestBody['flashcard_sets']
 
 				var jsonResponse = {
 					'flashcard_sets': [],
@@ -33,7 +32,9 @@ module.exports = function(app) {
 
 				var oldSetIdToNewIdMap = {};
 				// Insert flashcard sets into DB
+				var setsList = requestBody['flashcard_sets']
 				var setListLength = setsList ? setsList.length : 0;
+				console.log("MIGRATE LIBRARY - # of sets to migrate: " + setListLength);
 				for (var i = 0; i < setListLength; i++) {
 					var localSetId = setsList[i]['id'];
 					var quizletSetId = setsList[i]['quizlet_set_id'];
@@ -59,6 +60,8 @@ module.exports = function(app) {
 
 					var flashcardsList = setsList[i]['flashcards'];
 					var flashcardListLength = flashcardsList ? flashcardsList.length : 0;
+					console.log("MIGRATE LIBRARY - # of flashcards to migrate for set ID "
+						+ localSetId + ": " + flashcardListLength);
 					for (var j = 0; j < flashcardListLength; j++) {
 						var localFlashcardId = flashcardsList[j]['id'];
 						var term = flashcardsList[j]['term'];
@@ -87,6 +90,7 @@ module.exports = function(app) {
 				// Insert folders
 				var foldersList = requestBody['folders'];
 				var folderListLength = foldersList ? foldersList.length : 0;
+				console.log("MIGRATE LIBRARY - # of folders to migrate: " + folderListLength);
 				for (var k = 0; k < folderListLength; k++) {
 					var localFolderId = foldersList[k]['id'];
 					var folderName = foldersList[k]['name'];
