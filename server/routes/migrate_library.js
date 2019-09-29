@@ -68,11 +68,14 @@ module.exports = function(app) {
 						var definition = flashcardsList[j]['definition'];
 						var termImageUrl = flashcardsList[j]['term_image_url'];
 						var definitionImageUrl = flashcardsList[j]['definition_image_url'];
+						var learned = flashcardsList[j]['learned'];
+						var position = flashcardsList[j]['position'];
 
 						var flashcardQuery = 'INSERT INTO Flashcard ' +
-						'(flashcard_set_id, term, definition, term_image_url, definition_image_url) ' + 
-						'VALUES($1, $2, $3, $4, $5) RETURNING id';
-						var flashcardValues = [serverSetId, term, definition, termImageUrl, definitionImageUrl];
+						'(flashcard_set_id, term, definition, term_image_url, definition_image_url, ' +
+						'learned, position) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id';
+						var flashcardValues = [serverSetId, term, definition,
+						termImageUrl, definitionImageUrl, learned, position];
 
 						var flashcardResults = await client.query(flashcardQuery, flashcardValues);
 				
