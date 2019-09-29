@@ -38,7 +38,7 @@ module.exports = function(app) {
 				for (var i = 0; i < setListLength; i++) {
 					var localSetId = setsList[i]['id'];
 					var quizletSetId = setsList[i]['quizlet_set_id'];
-					var setName = setsList[i]['set_name'];
+					var setName = setsList[i]['name'];
 					var termsLanguage = setsList[i]['terms_language'];
 					var definitionsLanguage = setsList[i]['definitions_language'];
 
