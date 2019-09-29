@@ -39,12 +39,14 @@ module.exports = function(app) {
 					var localSetId = setsList[i]['id'];
 					var quizletSetId = setsList[i]['quizlet_set_id'];
 					var setName = setsList[i]['set_name'];
+					var termsLanguage = setsList[i]['terms_language'];
+					var definitionsLanguage = setsList[i]['definitions_language'];
 
 					// Insert flashcard set into DB
-					var insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name) ' +
-					'VALUES($1, $2, $3) RETURNING id';
+					var insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name, ' +
+					'terms_language, definitions_language) VALUES($1, $2, $3, $4, $5) RETURNING id';
 
-					var values = [userId, quizletSetId, setName];
+					var values = [userId, quizletSetId, setName, termsLanguage, definitionsLanguage];
 					var result = await client.query(insertQuery, values);
 
 					var serverSetId = result.rows[0]['id'];
