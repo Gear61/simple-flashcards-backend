@@ -29,6 +29,7 @@ module.exports = function(app) {
 					var error = {'error': 'Flashcard set does not exist'};
 					response.send(error);
 				} else {
+					const localId = requestBody['id'];
 					var term = requestBody['term'];
 					var definition = requestBody['definition'];
 					var termImageUrl = requestBody['term_image_url'];
@@ -40,7 +41,12 @@ module.exports = function(app) {
 
 					client.query(insertQuery, values)
 					.then(res => {
-						response.send(res.rows[0]);
+						const serverFlashcardId = res.rows[0]['id'];
+						var jsonResponse = {
+						'old_id': localId,
+						'new_id': serverFlashcardId
+						}
+						response.send(jsonResponse);
 					})
 					.catch(exception => {
 						console.error(exception.stack);
