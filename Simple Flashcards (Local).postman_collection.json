@@ -18,7 +18,7 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiaWF0IjoxNTY5NDQyNTA1LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.G_GCjhE0LyCYrRYND-IcOF_rn6MWA36hhHMB1KV-vWYBBjtiYIO-KHKGqoHi7mFsMMZDW25akPIzw-AVkt3Yhw",
 						"type": "text"
 					}
 				],
@@ -126,7 +126,7 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiaWF0IjoxNTY5NDQyNTA1LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.G_GCjhE0LyCYrRYND-IcOF_rn6MWA36hhHMB1KV-vWYBBjtiYIO-KHKGqoHi7mFsMMZDW25akPIzw-AVkt3Yhw",
 						"type": "text"
 					}
 				],
@@ -271,7 +271,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"access_token\": \"EAAXLpxikOi0BAN48N0ZB98qFlRNlVUNYaTL9f3ZCua3fKZCpRlGm8M6Pwk2Rgr5mXm0yXXQ1n68uI7bPf0ChIaDpCqzH8uZBnyfnp9pbbRrsgzRPpFr6BLSUtWViEGiWAH5TEYwoqBax6HY29Uk4pNlBMFWBCPauTdxcrYmlSmEQ3TJ3ByiDtpcXSuoa9jvEbC9XXc9klEcZCNatPJS70vKj4ZAR9AO70lj12hThy9hAZDZD\"\n}"
+					"raw": "{\n\t\"auth_token\": \"EAAITkCLoCmQBAAW4CfpnEF1ivsAquGbttfrtEmbTOriZC40ksWX1ZAeKTrfoMTdBG7yTpmbXLryqXf3RRMT5YTIDCAfrIScyMosr6fGraL6FogRYN0ixFVpfIVZCOTNxkwUnMStOZCD6u2ckK3DaBNDokZBP4yNfCW4fPES22BLiCwbbWRqiX8TRfPZAmUuahsKDZCFicKAxQDXvA116FVuGTVnE057UJlvKMUP4f5qFAZDZD\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/onboarding/facebook",
@@ -302,7 +302,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiZjg0MThiMjk2M2YzNjZmNWZlZmRkMTI3YjJjZWUwN2M4ODdlNjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMzY3NDMwOTQzMzUtbXI4YjJoODcydTk2ZDUzY2MzMGgyZGVpdjVsamtoZW8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzMzY3NDMwOTQzMzUtNWk5Z25kZDBiOHNvNmRwNzI3amdlYWYwMGNvMmVsbXMuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDUyMzU5ODY4MTI2MzcyNDAzMzciLCJlbWFpbCI6InJhbmRvbWFwcHNpbmM2MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsZXggQ2hpb3UiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1BUWZFOVhhcjU0TS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BQ0hpM3JkUGJqTlkyZ0lBd0J1T0NlNWtBMGhDUmQ2c25RL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbGV4IiwiZmFtaWx5X25hbWUiOiJDaGlvdSIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNTY4NzkwNzA5LCJleHAiOjE1Njg3OTQzMDl9.dr8urbFje8qGo-FY3GuFStg3zXHnXpP0pmjS33BP3RX1scTF8yneA9cSH1XxXTFDTVOMe25zcl5VHkjf7fSIy8IeZAwNg4MxhQ5l3eUIQr7LIzlGhb6OeSD2b69eWBZJcsCNFLkGKl693XacBBe1q3wqkYOHUtYEafOOQweBlV4t2V1KbVMosXVj5tQGwSRxrLUH3qxE9VlX9dJzZgT_4C0AEx1paRqVjwnxrzOZc8qHj6CFlPV9ILwY-FNz9XT8fBYmih6Oe_Ra-JmJaPUQG8-HiLCwgQN66uu2VKgg9dXRNvk1hJKiZgClFb6GxBZUJ1-uRHHQwm-xlfsT0jX1cg\"\n}"
+					"raw": "{\n\t\"auth_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiZjg0MThiMjk2M2YzNjZmNWZlZmRkMTI3YjJjZWUwN2M4ODdlNjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMzY3NDMwOTQzMzUtbXI4YjJoODcydTk2ZDUzY2MzMGgyZGVpdjVsamtoZW8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzMzY3NDMwOTQzMzUtNWk5Z25kZDBiOHNvNmRwNzI3amdlYWYwMGNvMmVsbXMuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDUyMzU5ODY4MTI2MzcyNDAzMzciLCJlbWFpbCI6InJhbmRvbWFwcHNpbmM2MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsZXggQ2hpb3UiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1BUWZFOVhhcjU0TS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BQ0hpM3JkUGJqTlkyZ0lBd0J1T0NlNWtBMGhDUmQ2c25RL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbGV4IiwiZmFtaWx5X25hbWUiOiJDaGlvdSIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNTY4OTU5MjQxLCJleHAiOjE1Njg5NjI4NDF9.UlrAwz3pXrUhuGyoUEW4yiI_ga1TvD21pRjqy9u_QwZZzzuaCD5D0XP27aqfr9Hgkl_7uXBgKr8xaRPFTOYKGicNdBzei_e8eClvu2ngrFYO3chzyNu2LTshywnsooAezKSfo_-s2QZfFQZzzFuIijvyPSz366q3exwMZHHzlgd1wa4rRD8TUYV6Pov_GCABKjHY7I_uJYCjUNLGaI2i6ja8_YwyqRLSQnuBF8nB1tuPR6yDYxYO1FUnZlSERJ91SXWX0gtVU2O3OBN5j3gKmkLvpCi5CAmA32HwN-7bXAM6kqwK-0rZ2MRF9TRQMhczU5uDtfqlpNmIYoH7r9ibfQ\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/onboarding/google",
@@ -494,6 +494,83 @@
 					"path": [
 						"flashcard",
 						"update_term_image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Migrate library",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MywiaWF0IjoxNTY5NzIxOTM5LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.K6nlK-6myCV995c-En4v3UegubtrNDN0Qqf-SoAKKtPmttJeaoqM5KWjnN3XX0iosqEQcx9aGoeR0iMjykB4TQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"flashcard_sets\": [\n        {\n            \"id\": 93,\n            \"set_name\": \"Postman Test Set\",\n            \"quizlet_set_id\": 943243,\n            \"flashcards\": [\n                {\n                    \"id\": 504,\n                    \"term\": \"In the shallow\",\n                    \"definition\": \"We're far from the shallow now\",\n                    \"term_image_url\": \"www.pusheen.com\"\n                },\n                {\n                    \"id\": 899,\n                    \"term\": \"I'm off the deep end\",\n                    \"definition\": \"Watch as I dive in\",\n                    \"definition_image_url\": \"www.mamegoma.com\"\n                }\n            ]\n        },\n        {\n            \"id\": 95,\n            \"set_name\": \"Postman Test Set\",\n            \"quizlet_set_id\": 9432488,\n            \"flashcards\": [\n                {\n                    \"id\": 9001,\n                    \"term\": \"In the memes\",\n                    \"definition\": \"We're far from the shallow now\",\n                    \"term_image_url\": \"www.pusheen.com\"\n                },\n                {\n                    \"id\": 350,\n                    \"term\": \"I'm off the deep end and memes\",\n                    \"definition\": \"Watch as I dive in second set\",\n                    \"definition_image_url\": \"www.mamegoma.com\"\n                }\n            ]\n        }\n    ],\n    \"folders\": [\n        {\n            \"id\": 49,\n            \"name\": \"Math stuff\",\n            \"flashcard_set_ids\": [\n                93,\n                95\n            ]\n        },\n        {\n            \"id\": 98,\n            \"name\": \"Other stuff\",\n            \"flashcard_set_ids\": [\n                93\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/migrate_library",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"migrate_library"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch library for user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MywiaWF0IjoxNTY5NzIxOTM5LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.K6nlK-6myCV995c-En4v3UegubtrNDN0Qqf-SoAKKtPmttJeaoqM5KWjnN3XX0iosqEQcx9aGoeR0iMjykB4TQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/fetch_library",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"fetch_library"
 					]
 				}
 			},
