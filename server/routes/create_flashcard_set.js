@@ -20,6 +20,7 @@ module.exports = function(app) {
 			}
 			
 			var requestBody = request.body;
+			var localSetId = requestBody['id'];
 			var quizletSetId = requestBody['quizlet_set_id'];
 			var setName = requestBody['set_name'];
 			var flashcardsList = requestBody['flashcards'];
@@ -35,12 +36,14 @@ module.exports = function(app) {
 				const setId = rows[0]['id'];
 
 				var addedSet = {
-					'id': setId
+					'old_id': localSetId,
+					'new_id': setId
 				};
 
 				if (flashcardsList && flashcardsList.length > 0) {
 					addedSet['flashcards'] = [];
 					for (var i = 0; i < flashcardsList.length; i++) {
+						const localFlashcardId = flashcardsList[i]['id'];
 						const term = flashcardsList[i]['term'];
 						const definition = flashcardsList[i]['definition'];
 						const termImageUrl = flashcardsList[i]['term_image_url'];
@@ -54,13 +57,8 @@ module.exports = function(app) {
 						const result = await client.query(flashcardQuery, flashcardValues);
 						const flashcardId = result.rows[0]['id'];
 						var addedFlashcard = {
-							'id': flashcardId,
-							'term': term,
-							'definition': definition,
-							'term_image_url': termImageUrl,
-							'definition_image_url': definitionImageUrl,
-							'learned': false,
-							'position': 0
+							'old_id': localFlashcardId,
+							'new_id': flashcardId
 						};
 
 						addedSet['flashcards'].push(addedFlashcard);
