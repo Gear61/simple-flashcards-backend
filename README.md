@@ -14,7 +14,7 @@ heroku pg:psql
 \i path_to_your_sql_here
 ```
 
-## View The Logs
+## View The Logs (On Production)
 ```
 heroku logs --tail
 ```
