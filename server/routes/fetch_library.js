@@ -67,6 +67,30 @@ module.exports = function(app) {
 					jsonResponse['flashcard_sets'].push(setToAddIntoResponse);
 				}
 
+				const foldersQuery = 'SELECT * FROM Folder WHERE user_id = $1'
+				const foldersValues = [userId];
+				const folderResults = await client.query(foldersQuery, foldersValues);
+				const folders = folderResults.rows;
+				for (var k = 0; k < folders.length; k++) {
+					const folderId = folders[k]['id'];
+					var folderForResponse = {
+						'id': folderId,
+						'name': folders[k]['name'],
+						'contained_set_ids': []
+					}
+
+					const setsInFolderQuery = 'SELECT * FROM FlashcardSetInFolder WHERE folder_id = $1'
+					const setsInFolderValues = [folderId];
+					const setsInFolderResults = await client.query(setsInFolderQuery, setsInFolderValues);
+					const setsInFolders = setsInFolderResults.rows;
+
+					for (var l = 0; l < setsInFolders.length; l++) {
+						folderForResponse['contained_set_ids'].push(setsInFolders[l]['flashcard_set_id']);
+					}
+
+					jsonResponse['folders'].push(folderForResponse);
+				}
+
 				await client.query('COMMIT');
 				response.send(jsonResponse);
 			} catch (e) {
