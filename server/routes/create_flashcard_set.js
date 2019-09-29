@@ -22,7 +22,7 @@ module.exports = function(app) {
 			var requestBody = request.body;
 			var localSetId = requestBody['id'];
 			var quizletSetId = requestBody['quizlet_set_id'];
-			var setName = requestBody['set_name'];
+			var setName = requestBody['name'];
 			var flashcardsList = requestBody['flashcards'];
 
 			const client = await pool.connect();
