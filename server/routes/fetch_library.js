@@ -76,7 +76,7 @@ module.exports = function(app) {
 					var folderForResponse = {
 						'id': folderId,
 						'name': folders[k]['name'],
-						'contained_set_ids': []
+						'flashcard_set_ids': []
 					}
 
 					const setsInFolderQuery = 'SELECT * FROM FlashcardSetInFolder WHERE folder_id = $1'
@@ -85,7 +85,7 @@ module.exports = function(app) {
 					const setsInFolders = setsInFolderResults.rows;
 
 					for (var l = 0; l < setsInFolders.length; l++) {
-						folderForResponse['contained_set_ids'].push(setsInFolders[l]['flashcard_set_id']);
+						folderForResponse['flashcard_set_ids'].push(setsInFolders[l]['flashcard_set_id']);
 					}
 
 					jsonResponse['folders'].push(folderForResponse);
