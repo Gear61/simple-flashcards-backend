@@ -34,10 +34,12 @@ module.exports = function(app) {
 					var definition = requestBody['definition'];
 					var termImageUrl = requestBody['term_image_url'];
 					var definitionImageUrl = requestBody['definition_image_url'];
+					var position = requestBody['position'];
 
 					const insertQuery = 'INSERT INTO Flashcard(flashcard_set_id, term, definition, ' +
-						'term_image_url, definition_image_url) VALUES($1, $2, $3, $4, $5) RETURNING id';
-					const values = [setId, term, definition, termImageUrl, definitionImageUrl];
+						'term_image_url, definition_image_url, position) VALUES($1, $2, $3, $4, $5, $6) ' +
+						'RETURNING id';
+					const values = [setId, term, definition, termImageUrl, definitionImageUrl, position];
 
 					client.query(insertQuery, values)
 					.then(res => {
