@@ -60,7 +60,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 18,\n\t\"set_id\": 4,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419\n}"
+					"raw": "{\n\t\"id\": 180,\n\t\"set_id\": 152,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419,\n\t\"position\": 9000\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -571,6 +571,78 @@
 					"path": [
 						"user",
 						"fetch_library"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update flashcard learned status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "auth_token",
+						"type": "text",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flashcard_id\": 3,\n\t\"learned\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard/update_learned_status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard",
+						"update_learned_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update all learned statuses for set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "auth_token",
+						"type": "text",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"set_id\": 2,\n\t\"learned\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/update_all_learned_statuses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"update_all_learned_statuses"
 					]
 				}
 			},
