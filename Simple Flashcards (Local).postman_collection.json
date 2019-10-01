@@ -647,6 +647,150 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 5067,\n\t\"name\": \"Dope math folder\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/folder/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"folder",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"name\": \"New Folder Name For Kicks\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/folder/rename",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"folder",
+						"rename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"folder_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/folder/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"folder",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add flashcard sets to folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"flashcard_set_ids\": [1, 2, 3, 4, 5]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/folder/add_sets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"folder",
+						"add_sets"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
