@@ -791,6 +791,78 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Remove flashcard set from folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"folder_id\": 1,\n\t\"flashcard_set_id\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/folder/remove_set",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"folder",
+						"remove_set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move flashcards into flashcard set from another flashcard set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "auth_token",
+						"type": "text",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"sending_set_id\": 2,\n\t\"receiving_set_id\": 3,\n\t\"flashcard_ids\": [1, 2, 3]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/move_cards_from_another_set",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"move_cards_from_another_set"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
