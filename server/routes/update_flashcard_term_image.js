@@ -17,7 +17,7 @@ module.exports = function(app) {
 			}
 			
 			var requestBody = request.body;
-			var flashcardId = requestBody['flashcard_id'];
+			var flashcardId = requestBody['id'];
 			var termImageUrl = requestBody['term_image_url'];
 
 			const updateQuery = 'UPDATE Flashcard SET term_image_url = $1 WHERE id = $2'
