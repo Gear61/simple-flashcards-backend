@@ -17,11 +17,13 @@ module.exports = function(app) {
 			}
 
 			var requestBody = request.body;
-			var folderId = requestBody['folder_id'];
+			var folderId = requestBody['id'];
 
 			const client = await pool.connect();
 			try {
 				await client.query('BEGIN');
+
+				console.log("Deleting folder with ID: " + folderId);
 
 				const deleteFolderQuery = 'DELETE FROM Folder WHERE id = $1';
 				const deleteFolderValues = [folderId];
