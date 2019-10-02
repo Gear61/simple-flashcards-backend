@@ -28,6 +28,8 @@ module.exports = function(app) {
 				const flashcardIds = requestBody['flashcard_ids'];
 				for (var i = 0; i < flashcardIds.length; i++) {
 					const flashcardId = flashcardIds[i];
+					console.log("Moving flashcard with ID " + flashcardId + " from set "
+						+ sendingSetId + " into set " + receivingSetId + ".");
 					const updateQuery = 'UPDATE Flashcard SET flashcard_set_id = $1 ' +
 					'WHERE id = $2 AND flashcard_set_id = $3'
 					const values = [receivingSetId, flashcardId, sendingSetId];
