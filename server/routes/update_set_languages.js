@@ -17,7 +17,7 @@ module.exports = function(app) {
 			}
 
 			var requestBody = request.body;
-			var setId = requestBody['set_id'];
+			var setId = requestBody['id'];
 			var termsLanguage = requestBody['terms_language'];
 			var definitionsLanguage = requestBody['definitions_language'];
 

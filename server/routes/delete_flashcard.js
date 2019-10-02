@@ -17,7 +17,7 @@ module.exports = function(app) {
 			}
 
 			var requestBody = request.body;
-			var flashcardId = requestBody['flashcard_id'];
+			var flashcardId = requestBody['id'];
 
 			const deleteQuery = 'DELETE FROM Flashcard WHERE id = $1';
 			const values = [flashcardId];

@@ -17,8 +17,8 @@ module.exports = function(app) {
 			}
 
 			var requestBody = request.body;
-			var setId = requestBody['set_id'];
-			var setName = requestBody['set_name'];
+			var setId = requestBody['id'];
+			var setName = requestBody['name'];
 
 			const updateQuery = 'UPDATE FlashcardSet SET name = $1 WHERE id = $2'
 			const values = [setName, setId];
