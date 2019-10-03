@@ -20,6 +20,8 @@ module.exports = function(app) {
 			var flashcardId = requestBody['id'];
 			var definition = requestBody['definition'];
 
+			console.log("Updating flashcard with ID " + flashcardId + " to have definition: " + definition);
+
 			const updateQuery = 'UPDATE Flashcard SET definition = $1 WHERE id = $2'
 			const values = [definition, flashcardId];
 
