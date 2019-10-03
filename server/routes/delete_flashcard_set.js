@@ -10,7 +10,10 @@ module.exports = function(app) {
 		try {
 			var authToken = request.header('auth_token');
 			var expandedToken = authHelper.verify(authToken);
-			if (!expandedToken) {
+			var userId;
+			if (expandedToken) {
+				userId = expandedToken['user_id'];
+			} else {
 				response.status(401);
 				response.send();
 				return;
@@ -22,6 +25,15 @@ module.exports = function(app) {
 			const client = await pool.connect();
 			try {
 				await client.query('BEGIN');
+
+				const findUserQuery = 'SELECT user_id FROM FlashcardSet WHERE id = $1';
+				const findUserValues = [setId];
+				const { rows } = await client.query(findUserQuery, findUserValues);
+				if (rows.length == 0 || rows[0]['user_id'] != userId) {
+					response.status(401);
+					response.send({error: 'This flashcard set does not belong to the passed in user ID'});
+					return;
+				}
 
 				const deleteSetQuery = 'DELETE FROM FlashcardSet WHERE id = $1';
 				const setValues = [setId];
