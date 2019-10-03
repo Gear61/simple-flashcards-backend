@@ -6,7 +6,7 @@ const pool = new Pool({
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
-	app.post('/flashcard_set/delete', async (request, response) => {
+	app.post('/flashcard_set/add_flashcards', async (request, response) => {
 		try {
 			var authToken = request.header('auth_token');
 			var expandedToken = authHelper.verify(authToken);
@@ -18,9 +18,10 @@ module.exports = function(app) {
 				response.send();
 				return;
 			}
-
+			
 			var requestBody = request.body;
 			var setId = requestBody['id'];
+			var flashcardsList = requestBody['flashcards'];
 
 			const client = await pool.connect();
 			try {
@@ -35,17 +36,31 @@ module.exports = function(app) {
 					return;
 				}
 
-				const deleteSetQuery = 'DELETE FROM FlashcardSet WHERE id = $1';
-				const setValues = [setId];
-				await client.query(deleteSetQuery, setValues);
+				var jsonResponse = [];
 
-				const deleteFlashcardsQuery = 'DELETE FROM Flashcard WHERE flashcard_set_id = $1';
-				const flashcardValues = [setId];
-				await client.query(deleteFlashcardsQuery, flashcardValues);
+				for (var i = 0; i < flashcardsList.length; i++) {
+					const localFlashcardId = flashcardsList[i]['id'];
+					const term = flashcardsList[i]['term'];
+					const definition = flashcardsList[i]['definition'];
+					const termImageUrl = flashcardsList[i]['term_image_url'];
+
+					const flashcardQuery = 'INSERT INTO Flashcard ' +
+					'(flashcard_set_id, term, definition, term_image_url) ' + 
+					'VALUES($1, $2, $3, $4) RETURNING id';
+					const flashcardValues = [setId, term, definition, termImageUrl];
+
+					const result = await client.query(flashcardQuery, flashcardValues);
+					const flashcardId = result.rows[0]['id'];
+					var addedFlashcard = {
+						'old_id': localFlashcardId,
+						'new_id': flashcardId
+					};
+
+					jsonResponse.push(addedFlashcard);
+				}
 
 				await client.query('COMMIT');
-				response.status(200);
-				response.send();
+				response.send(jsonResponse);
 			} catch (e) {
 				await client.query('ROLLBACK')
 				throw e
