@@ -4,6 +4,7 @@ const pool = new Pool({
 	ssl: true
 });
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app) {
 	app.post('/user/migrate_library', async (request, response) => {
@@ -36,24 +37,25 @@ module.exports = function(app) {
 				var setListLength = setsList ? setsList.length : 0;
 				console.log("MIGRATE LIBRARY - # of sets to migrate: " + setListLength);
 				for (var i = 0; i < setListLength; i++) {
-					var localSetId = setsList[i]['id'];
+					var localSetId = setsList[i]['local_id'];
 					var quizletSetId = setsList[i]['quizlet_set_id'];
 					var setName = setsList[i]['name'];
 					var termsLanguage = setsList[i]['terms_language'];
 					var definitionsLanguage = setsList[i]['definitions_language'];
 
+					var serverSetId = uuidv4();
+
 					// Insert flashcard set into DB
-					var insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name, ' +
-					'terms_language, definitions_language) VALUES($1, $2, $3, $4, $5) RETURNING id';
+					var insertQuery = 'INSERT INTO FlashcardSet(id, user_id, quizlet_set_id, name, ' +
+					'terms_language, definitions_language) VALUES($1, $2, $3, $4, $5, $6)';
 
-					var values = [userId, quizletSetId, setName, termsLanguage, definitionsLanguage];
-					var result = await client.query(insertQuery, values);
-
-					var serverSetId = result.rows[0]['id'];
+					var values = [serverSetId, userId, quizletSetId, setName,
+					termsLanguage, definitionsLanguage];
+					await client.query(insertQuery, values);
 
 					var setToAddIntoResponse = {
-						'old_id': localSetId,
-						'new_id': serverSetId,
+						'local_id': localSetId,
+						'server_id': serverSetId,
 						'flashcards': []
 					}
 
@@ -65,26 +67,26 @@ module.exports = function(app) {
 					console.log("MIGRATE LIBRARY - # of flashcards to migrate for set ID "
 						+ localSetId + ": " + flashcardListLength);
 					for (var j = 0; j < flashcardListLength; j++) {
-						var localFlashcardId = flashcardsList[j]['id'];
+						var localFlashcardId = flashcardsList[j]['local_id'];
 						var term = flashcardsList[j]['term'];
 						var definition = flashcardsList[j]['definition'];
 						var termImageUrl = flashcardsList[j]['term_image_url'];
 						var definitionImageUrl = flashcardsList[j]['definition_image_url'];
 						var learned = flashcardsList[j]['learned'];
 						var position = flashcardsList[j]['position'];
+						var serverFlashcardId = uuidv4();
 
 						var flashcardQuery = 'INSERT INTO Flashcard ' +
-						'(flashcard_set_id, term, definition, term_image_url, definition_image_url, ' +
-						'learned, position) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id';
-						var flashcardValues = [serverSetId, term, definition,
+						'(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, ' +
+						'learned, position) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
+						var flashcardValues = [serverFlashcardId, serverSetId, term, definition,
 						termImageUrl, definitionImageUrl, learned, position];
 
-						var flashcardResults = await client.query(flashcardQuery, flashcardValues);
+						await client.query(flashcardQuery, flashcardValues);
 				
-						var serverFlashcardId = flashcardResults.rows[0]['id'];
 						var flashcardToAddIntoResponse = {
-							'old_id': localFlashcardId,
-							'new_id': serverFlashcardId
+							'local_id': localFlashcardId,
+							'server_id': serverFlashcardId
 						};
 						setToAddIntoResponse['flashcards'].push(flashcardToAddIntoResponse);
 					}
@@ -97,24 +99,24 @@ module.exports = function(app) {
 				var folderListLength = foldersList ? foldersList.length : 0;
 				console.log("MIGRATE LIBRARY - # of folders to migrate: " + folderListLength);
 				for (var k = 0; k < folderListLength; k++) {
-					var localFolderId = foldersList[k]['id'];
+					var localFolderId = foldersList[k]['local_id'];
 					var folderName = foldersList[k]['name'];
+					var serverFolderId = uuidv4();
 
 					// Insert folder into DB
-					var insertFolderQuery = 'INSERT INTO Folder(user_id, name) ' +
-					'VALUES($1, $2) RETURNING id';
+					var insertFolderQuery = 'INSERT INTO Folder(id, user_id, name) ' +
+					'VALUES($1, $2, $3)';
 
-					var folderValues = [userId, folderName];
-					var folderResults = await client.query(insertFolderQuery, folderValues);
-					var serverFolderId = folderResults.rows[0]['id'];
+					var folderValues = [serverFolderId, userId, folderName];
+					await client.query(insertFolderQuery, folderValues);
 
 					var folderToAddIntoResponse = {
-						'old_id': localFolderId,
-						'new_id': serverFolderId
+						'local_id': localFolderId,
+						'server_id': serverFolderId
 					}
 					jsonResponse['folders'].push(folderToAddIntoResponse);
 
-					var localSetIds = foldersList[k]['flashcard_set_ids'];
+					var localSetIds = foldersList[k]['local_flashcard_set_ids'];
 					var setIdListLength = localSetIds ? localSetIds.length : 0;
 					for (var l = 0; l < setIdListLength; l++) {
 						var localSetId = localSetIds[l];
