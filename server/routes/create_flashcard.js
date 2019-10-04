@@ -4,6 +4,7 @@ const pool = new Pool({
 	ssl: true
 });
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app) {
 	app.post('/flashcard/create', async (request, response) => {
@@ -29,24 +30,24 @@ module.exports = function(app) {
 					var error = {'error': 'Flashcard set does not exist'};
 					response.send(error);
 				} else {
-					const localId = requestBody['id'];
+					const localId = requestBody['local_id'];
 					var term = requestBody['term'];
 					var definition = requestBody['definition'];
 					var termImageUrl = requestBody['term_image_url'];
 					var definitionImageUrl = requestBody['definition_image_url'];
 					var position = requestBody['position'];
+					var flashcardId = uuidv4();
 
-					const insertQuery = 'INSERT INTO Flashcard(flashcard_set_id, term, definition, ' +
-						'term_image_url, definition_image_url, position) VALUES($1, $2, $3, $4, $5, $6) ' +
-						'RETURNING id';
-					const values = [setId, term, definition, termImageUrl, definitionImageUrl, position];
+					const insertQuery = 'INSERT INTO Flashcard(id, flashcard_set_id, term, definition, ' +
+						'term_image_url, definition_image_url, position) VALUES($1, $2, $3, $4, $5, $6, $7)';
+					const values = [flashcardId, setId, term, definition,
+					termImageUrl, definitionImageUrl, position];
 
 					client.query(insertQuery, values)
 					.then(res => {
-						const serverFlashcardId = res.rows[0]['id'];
 						var jsonResponse = {
-						'old_id': localId,
-						'new_id': serverFlashcardId
+							'local_id': localId,
+							'server_id': flashcardId
 						}
 						response.send(jsonResponse);
 					})
