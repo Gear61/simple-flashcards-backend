@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS FlashcardSet (
 
 CREATE TABLE IF NOT EXISTS Flashcard (
 	id varchar(64),
-	flashcard_set_id INT,
+	flashcard_set_id varchar(64),
 	term varchar(4096),
 	definition varchar(4096),
 	term_image_url varchar(512),

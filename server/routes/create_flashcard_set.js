@@ -37,8 +37,8 @@ module.exports = function(app) {
 				await client.query(insertQuery, values);
 
 				var addedSet = {
-					'old_id': localSetId,
-					'new_id': setId
+					'local_id': localSetId,
+					'server_id': setId
 				};
 
 				if (flashcardsList && flashcardsList.length > 0) {
@@ -59,8 +59,8 @@ module.exports = function(app) {
 
 						await client.query(flashcardQuery, flashcardValues);
 						var addedFlashcard = {
-							'old_id': localFlashcardId,
-							'new_id': flashcardId
+							'local_id': localFlashcardId,
+							'server_id': flashcardId
 						};
 
 						addedSet['flashcards'].push(addedFlashcard);
