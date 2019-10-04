@@ -4,6 +4,7 @@ const pool = new Pool({
 	ssl: true
 });
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app) {
 	app.post('/flashcard_set/add_flashcards', async (request, response) => {
@@ -39,21 +40,21 @@ module.exports = function(app) {
 				var jsonResponse = [];
 
 				for (var i = 0; i < flashcardsList.length; i++) {
-					const localFlashcardId = flashcardsList[i]['id'];
+					const localFlashcardId = flashcardsList[i]['local_id'];
 					const term = flashcardsList[i]['term'];
 					const definition = flashcardsList[i]['definition'];
 					const termImageUrl = flashcardsList[i]['term_image_url'];
 
+					var flashcardId = uuidv4();
 					const flashcardQuery = 'INSERT INTO Flashcard ' +
-					'(flashcard_set_id, term, definition, term_image_url) ' + 
-					'VALUES($1, $2, $3, $4) RETURNING id';
-					const flashcardValues = [setId, term, definition, termImageUrl];
+					'(id, flashcard_set_id, term, definition, term_image_url) ' + 
+					'VALUES($1, $2, $3, $4, $5)';
+					const flashcardValues = [flashcardId, setId, term, definition, termImageUrl];
 
-					const result = await client.query(flashcardQuery, flashcardValues);
-					const flashcardId = result.rows[0]['id'];
+					await client.query(flashcardQuery, flashcardValues);
 					var addedFlashcard = {
-						'old_id': localFlashcardId,
-						'new_id': flashcardId
+						'local_id': localFlashcardId,
+						'server_id': flashcardId
 					};
 
 					jsonResponse.push(addedFlashcard);
