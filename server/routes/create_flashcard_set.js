@@ -4,6 +4,7 @@ const pool = new Pool({
 	ssl: true
 });
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app) {
 	app.post('/flashcard_set/create', async (request, response) => {
@@ -20,7 +21,7 @@ module.exports = function(app) {
 			}
 			
 			var requestBody = request.body;
-			var localSetId = requestBody['id'];
+			var localSetId = requestBody['local_id'];
 			var quizletSetId = requestBody['quizlet_set_id'];
 			var setName = requestBody['name'];
 			var flashcardsList = requestBody['flashcards'];
@@ -29,11 +30,11 @@ module.exports = function(app) {
 			try {
 				await client.query('BEGIN');
 
-				const insertQuery = 'INSERT INTO FlashcardSet(user_id, quizlet_set_id, name) ' +
-				'VALUES($1, $2, $3) RETURNING id';
-				const values = [userId, quizletSetId, setName];
-				const { rows } = await client.query(insertQuery, values);
-				const setId = rows[0]['id'];
+				var setId = uuidv4();
+				const insertQuery = 'INSERT INTO FlashcardSet(id, user_id, quizlet_set_id, name) ' +
+				'VALUES($1, $2, $3, $4)';
+				const values = [setId, userId, quizletSetId, setName];
+				await client.query(insertQuery, values);
 
 				var addedSet = {
 					'old_id': localSetId,
@@ -43,19 +44,20 @@ module.exports = function(app) {
 				if (flashcardsList && flashcardsList.length > 0) {
 					addedSet['flashcards'] = [];
 					for (var i = 0; i < flashcardsList.length; i++) {
-						const localFlashcardId = flashcardsList[i]['id'];
+						const localFlashcardId = flashcardsList[i]['local_id'];
 						const term = flashcardsList[i]['term'];
 						const definition = flashcardsList[i]['definition'];
 						const termImageUrl = flashcardsList[i]['term_image_url'];
 						const definitionImageUrl = flashcardsList[i]['definition_image_url'];
 
+						var flashcardId = uuidv4();
 						const flashcardQuery = 'INSERT INTO Flashcard ' +
-						'(flashcard_set_id, term, definition, term_image_url, definition_image_url) ' + 
-						'VALUES($1, $2, $3, $4, $5) RETURNING id';
-						const flashcardValues = [setId, term, definition, termImageUrl, definitionImageUrl];
+						'(id, flashcard_set_id, term, definition, term_image_url, definition_image_url) ' + 
+						'VALUES($1, $2, $3, $4, $5, $6)';
+						const flashcardValues = [flashcardId, setId, term, definition,
+						termImageUrl, definitionImageUrl];
 
-						const result = await client.query(flashcardQuery, flashcardValues);
-						const flashcardId = result.rows[0]['id'];
+						await client.query(flashcardQuery, flashcardValues);
 						var addedFlashcard = {
 							'old_id': localFlashcardId,
 							'new_id': flashcardId

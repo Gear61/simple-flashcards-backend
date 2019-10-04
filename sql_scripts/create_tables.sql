@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Account (
 );
 
 CREATE TABLE IF NOT EXISTS FlashcardSet (
-	id SERIAL,
+	id varchar(64),
 	user_id INT,
 	quizlet_set_id BIGINT,
 	name varchar(256),
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS FlashcardSet (
 );
 
 CREATE TABLE IF NOT EXISTS Flashcard (
-	id SERIAL,
+	id varchar(64),
 	flashcard_set_id INT,
 	term varchar(4096),
 	definition varchar(4096),
@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS Flashcard (
 );
 
 CREATE TABLE IF NOT EXISTS Folder (
-	id SERIAL,
+	id varchar(64),
 	user_id INT,
 	name varchar(256)
 );
 
 CREATE TABLE IF NOT EXISTS FlashcardSetInFolder (
-	flashcard_set_id INT,
-	folder_id INT
+	flashcard_set_id varchar(64),
+	folder_id varchar(64)
 );
