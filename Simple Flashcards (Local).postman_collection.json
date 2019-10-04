@@ -18,13 +18,13 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiaWF0IjoxNTY5NDQyNTA1LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.G_GCjhE0LyCYrRYND-IcOF_rn6MWA36hhHMB1KV-vWYBBjtiYIO-KHKGqoHi7mFsMMZDW25akPIzw-AVkt3Yhw",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 15,\n\t\"name\": \"Postman Test Set\",\n\t\"quizlet_set_id\": 943243,\n\t\"flashcards\": [\n\t\t{\n\t\t\t\"id\": 10,\n\t\t\t\"term\": \"In the shallow\",\n\t\t\t\"definition\": \"We're far from the shallow now\",\n\t\t\t\"term_image_url\": \"www.pusheen.com\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 11,\n\t\t\t\"term\": \"I'm off the deep end\",\n\t\t\t\"definition\": \"Watch as I dive in\",\n\t\t\t\"definition_image_url\": \"www.mamegoma.com\"\n\t\t}\n\t]\n}"
+					"raw": "{\n\t\"local_id\": 15,\n\t\"name\": \"Postman Test Set\",\n\t\"quizlet_set_id\": 943243,\n\t\"flashcards\": [\n\t\t{\n\t\t\t\"local_id\": 10,\n\t\t\t\"term\": \"In the shallow\",\n\t\t\t\"definition\": \"We're far from the shallow now\",\n\t\t\t\"term_image_url\": \"www.pusheen.com\"\n\t\t},\n\t\t{\n\t\t\t\"local_id\": 11,\n\t\t\t\"term\": \"I'm off the deep end\",\n\t\t\t\"definition\": \"Watch as I dive in\",\n\t\t\t\"definition_image_url\": \"www.mamegoma.com\"\n\t\t}\n\t]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/create",
@@ -60,7 +60,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 180,\n\t\"set_id\": 152,\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": 419,\n\t\"position\": 9000\n}"
+					"raw": "{\n\t\"local_id\": 180,\n\t\"set_id\": \"b2206915-d75f-43a8-86de-f689abf1befa\",\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": \"419\",\n\t\"position\": 9000\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -96,7 +96,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"flashcard_id\": 10\n}"
+					"raw": "{\n\t\"id\": 10\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/delete",
@@ -204,7 +204,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 16\n}"
+					"raw": "{\n\t\"id\": 90001\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/delete",
@@ -338,7 +338,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 1,\n\t\"set_name\": \"Meme time\"\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Meme time\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/rename",
@@ -374,7 +374,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 1,\n\t\"terms_language\": 8,\n\t\"definitions_language\": 3\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"terms_language\": 8,\n\t\"definitions_language\": 3\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/set_languages",
@@ -410,7 +410,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"flashcard_id\": 44,\n\t\"term\": \"This is now updated again!\"\n}"
+					"raw": "{\n\t\"id\": 44,\n\t\"term\": \"This is now updated again!\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/update_term",
@@ -446,7 +446,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"flashcard_id\": 44,\n\t\"definition\": \"This is now updated again too!\"\n}"
+					"raw": "{\n\t\"id\": 44,\n\t\"definition\": \"This is now updated again too!\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/update_definition",
@@ -482,7 +482,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"flashcard_id\": 44,\n\t\"term_image_url\": \"\"\n}"
+					"raw": "{\n\t\"id\": 44,\n\t\"term_image_url\": \"\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/update_term_image",
@@ -512,13 +512,13 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MywiaWF0IjoxNTY5NzIxOTM5LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.K6nlK-6myCV995c-En4v3UegubtrNDN0Qqf-SoAKKtPmttJeaoqM5KWjnN3XX0iosqEQcx9aGoeR0iMjykB4TQ",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"flashcard_sets\": [\n        {\n            \"id\": 93,\n            \"name\": \"Postman Test Set\",\n            \"quizlet_set_id\": 943243,\n            \"terms_language\": 1,\n            \"definitions_language\": 0,\n            \"flashcards\": [\n                {\n                    \"id\": 504,\n                    \"term\": \"In the shallow\",\n                    \"definition\": \"We're far from the shallow now\",\n                    \"term_image_url\": \"www.pusheen.com\",\n                    \"learned\": false,\n                    \"position\": 1\n                },\n                {\n                    \"id\": 899,\n                    \"term\": \"I'm off the deep end\",\n                    \"definition\": \"Watch as I dive in\",\n                    \"definition_image_url\": \"www.mamegoma.com\",\n                    \"learned\": true,\n                    \"position\": 0\n                }\n            ]\n        },\n        {\n            \"id\": 95,\n            \"name\": \"Postman Test Set\",\n            \"quizlet_set_id\": 9432488,\n            \"terms_language\": 8,\n            \"definitions_language\": 0,\n            \"flashcards\": [\n                {\n                    \"id\": 9001,\n                    \"term\": \"In the memes\",\n                    \"definition\": \"We're far from the shallow now\",\n                    \"term_image_url\": \"www.pusheen.com\"\n                },\n                {\n                    \"id\": 350,\n                    \"term\": \"I'm off the deep end and memes\",\n                    \"definition\": \"Watch as I dive in second set\",\n                    \"definition_image_url\": \"www.mamegoma.com\"\n                }\n            ]\n        }\n    ],\n    \"folders\": [\n        {\n            \"id\": 49,\n            \"name\": \"Math stuff\",\n            \"flashcard_set_ids\": [\n                93,\n                95\n            ]\n        },\n        {\n            \"id\": 98,\n            \"name\": \"Other stuff\",\n            \"flashcard_set_ids\": [\n                93\n            ]\n        }\n    ]\n}",
+					"raw": "{\n    \"flashcard_sets\": [\n        {\n            \"local_id\": 93,\n            \"name\": \"Postman Test Set\",\n            \"quizlet_set_id\": 943243,\n            \"terms_language\": 1,\n            \"definitions_language\": 0,\n            \"flashcards\": [\n                {\n                    \"local_id\": 504,\n                    \"term\": \"In the shallow\",\n                    \"definition\": \"We're far from the shallow now\",\n                    \"term_image_url\": \"www.pusheen.com\",\n                    \"learned\": false,\n                    \"position\": 1\n                },\n                {\n                    \"local_id\": 899,\n                    \"term\": \"I'm off the deep end\",\n                    \"definition\": \"Watch as I dive in\",\n                    \"definition_image_url\": \"www.mamegoma.com\",\n                    \"learned\": true,\n                    \"position\": 0\n                }\n            ]\n        },\n        {\n            \"local_id\": 95,\n            \"name\": \"Postman Test Set\",\n            \"quizlet_set_id\": 9432488,\n            \"terms_language\": 8,\n            \"definitions_language\": 0,\n            \"flashcards\": [\n                {\n                    \"local_id\": 9001,\n                    \"term\": \"In the memes\",\n                    \"definition\": \"We're far from the shallow now\",\n                    \"term_image_url\": \"www.pusheen.com\"\n                },\n                {\n                    \"local_id\": 350,\n                    \"term\": \"I'm off the deep end and memes\",\n                    \"definition\": \"Watch as I dive in second set\",\n                    \"definition_image_url\": \"www.mamegoma.com\"\n                }\n            ]\n        }\n    ],\n    \"folders\": [\n        {\n            \"local_id\": 49,\n            \"name\": \"Math stuff\",\n            \"local_flashcard_set_ids\": [\n                93,\n                95\n            ]\n        },\n        {\n            \"local_id\": 98,\n            \"name\": \"Other stuff\",\n            \"local_flashcard_set_ids\": [\n                93\n            ]\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -553,7 +553,7 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MywiaWF0IjoxNTY5NzIxOTM5LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.K6nlK-6myCV995c-En4v3UegubtrNDN0Qqf-SoAKKtPmttJeaoqM5KWjnN3XX0iosqEQcx9aGoeR0iMjykB4TQ",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
@@ -595,7 +595,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"flashcard_id\": 3,\n\t\"learned\": true\n}"
+					"raw": "{\n\t\"id\": 3,\n\t\"learned\": true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/update_learned_status",
@@ -631,7 +631,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 2,\n\t\"learned\": true\n}"
+					"raw": "{\n\t\"set_id\": \"set_one\",\n\t\"learned\": true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/update_all_learned_statuses",
@@ -667,7 +667,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 5067,\n\t\"name\": \"Dope math folder\"\n}"
+					"raw": "{\n\t\"local_id\": 5067,\n\t\"name\": \"Dope math folder\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/folder/create",
@@ -739,7 +739,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"folder_id\": 1\n}"
+					"raw": "{\n\t\"id\": 1\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/folder/delete",
@@ -859,6 +859,42 @@
 					"path": [
 						"flashcard_set",
 						"move_cards_from_another_set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add flashcards to set (used for copy flashcards)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"96c5e534-de28-496c-9b04-a84d3699202f\",\n\t\"flashcards\": [\n\t\t{\n\t\t\t\"local_id\": 10,\n\t\t\t\"term\": \"NEW CARD 1\",\n\t\t\t\"definition\": \"We're far from the shallow now\",\n\t\t\t\"term_image_url\": \"www.pusheen.com\"\n\t\t},\n\t\t{\n\t\t\t\"local_id\": 11,\n\t\t\t\"term\": \"NEW CARD 2\",\n\t\t\t\"definition\": \"Watch as I dive in\",\n\t\t\t\"definition_image_url\": \"www.mamegoma.com\"\n\t\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/add_flashcards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"add_flashcards"
 					]
 				}
 			},
