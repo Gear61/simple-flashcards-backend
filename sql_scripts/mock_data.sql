@@ -27,29 +27,29 @@ VALUES ('set_three', 2, 5902934, 'My Hero Academia', 0, 0);
 
 -- Create flashcards
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_one', 1, 'What is 2 + 2?', '4', NULL, NULL, FALSE, 0);
+VALUES ('card_one', 'set_one', 'What is 2 + 2?', '4', NULL, NULL, FALSE, 0);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_two', 1, 'What is 17 - 8?', '9', NULL, NULL, TRUE, 1);
+VALUES ('card_two', 'set_one', 'What is 17 - 8?', '9', NULL, NULL, TRUE, 1);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_three', 1, 'What is 178 % 2?', '89', NULL, NULL, FALSE, 2);
+VALUES ('card_three', 'set_one', 'What is 178 % 2?', '89', NULL, NULL, FALSE, 2);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_four', 1, 'What is 0 % 0?', 'Undefined', NULL, NULL, FALSE, 3);
+VALUES ('card_four', 'set_one', 'What is 0 % 0?', 'Undefined', NULL, NULL, FALSE, 3);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_five', 2, 'California', 'Sacramento', NULL, NULL, TRUE, 0);
+VALUES ('card_five', 'set_two', 'California', 'Sacramento', NULL, NULL, TRUE, 0);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_six', 2, 'Arizona', 'Phoenix', NULL, NULL, FALSE, 1);
+VALUES ('card_six', 'set_two', 'Arizona', 'Phoenix', NULL, NULL, FALSE, 1);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_seven', 3, 'Who is All Might?', 'The greatest superhero of all time', NULL, NULL, TRUE, 0);
+VALUES ('card_seven', 'set_three', 'Who is All Might?', 'The greatest superhero of all time', NULL, NULL, TRUE, 0);
 
 -- To escape single quotes, you need to place another single quote in front of it
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_eight', 3, 'What is All Might''s quirk?', 'One for all', NULL, NULL, TRUE, 1);
+VALUES ('card_eight', 'set_three', 'What is All Might''s quirk?', 'One for all', NULL, NULL, TRUE, 1);
 
 INSERT INTO Flashcard(id, flashcard_set_id, term, definition, term_image_url, definition_image_url, learned, position)
-VALUES ('card_nine', 3, 'What is the theme song of My Hero Academia?', 'You Say Run', NULL, NULL, TRUE, 2);
+VALUES ('card_nine', 'set_three', 'What is the theme song of My Hero Academia?', 'You Say Run', NULL, NULL, TRUE, 2);

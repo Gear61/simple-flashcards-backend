@@ -4,6 +4,7 @@ const pool = new Pool({
 	ssl: true
 });
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app) {
 	app.post('/folder/create', async (request, response) => {
@@ -20,18 +21,18 @@ module.exports = function(app) {
 			}
 
 			var requestBody = request.body;
-			var folderId = requestBody['id'];
+			const serverFolderId = uuidv4();
+			var localFolderId = requestBody['local_id'];
 			var folderName = requestBody['name'];
-			const folderQuery = 'INSERT INTO Folder(user_id, name) VALUES($1, $2) RETURNING id';
-			const values = [userId, folderName];
+			const folderQuery = 'INSERT INTO Folder(id, user_id, name) VALUES($1, $2, $3)';
+			const values = [serverFolderId, userId, folderName];
 			const client = await pool.connect();
 
 			client.query(folderQuery, values)
 			.then(res => {
-				const serverFolderId = res.rows[0]['id'];
 				var jsonResponse = {
-					'old_id': folderId,
-					'new_id': serverFolderId
+					'local_id': localFolderId,
+					'server_id': serverFolderId
 				}
 				response.status(200);
 				response.send(jsonResponse);
