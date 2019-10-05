@@ -45,16 +45,16 @@ module.exports = function(app) {
 					const definition = flashcardsList[i]['definition'];
 					const termImageUrl = flashcardsList[i]['term_image_url'];
 
-					var flashcardId = uuidv4();
+					var serverFlashcardId = uuidv4();
 					const flashcardQuery = 'INSERT INTO Flashcard ' +
 					'(id, flashcard_set_id, term, definition, term_image_url) ' + 
 					'VALUES($1, $2, $3, $4, $5)';
-					const flashcardValues = [flashcardId, setId, term, definition, termImageUrl];
+					const flashcardValues = [serverFlashcardId, setId, term, definition, termImageUrl];
 
 					await client.query(flashcardQuery, flashcardValues);
 					var addedFlashcard = {
 						'local_id': localFlashcardId,
-						'server_id': flashcardId
+						'server_id': serverFlashcardId
 					};
 
 					jsonResponse.push(addedFlashcard);
