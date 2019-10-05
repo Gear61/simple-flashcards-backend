@@ -126,7 +126,7 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNSwiaWF0IjoxNTY5NDQyNTA1LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.G_GCjhE0LyCYrRYND-IcOF_rn6MWA36hhHMB1KV-vWYBBjtiYIO-KHKGqoHi7mFsMMZDW25akPIzw-AVkt3Yhw",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
 						"type": "text"
 					}
 				],
@@ -204,7 +204,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 90001\n}"
+					"raw": "{\n\t\"id\": \"9f914fc9-67f6-4f2e-8e42-2dad6f331781\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/delete",
@@ -775,7 +775,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"flashcard_set_ids\": [1, 2, 3, 4, 5]\n}"
+					"raw": "{\n\t\"id\": \"12e4649e-f807-4c7f-8f77-66d52b0b960a\",\n\t\"flashcard_set_ids\": [\"9f914fc9-67f6-4f2e-8e42-2dad6f331781\"]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/folder/add_sets",
@@ -895,6 +895,42 @@
 					"path": [
 						"flashcard_set",
 						"add_flashcards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch folders for user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/fetch_folders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"fetch_folders"
 					]
 				}
 			},
