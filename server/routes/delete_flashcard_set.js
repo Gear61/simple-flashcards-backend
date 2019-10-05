@@ -43,6 +43,11 @@ module.exports = function(app) {
 				const flashcardValues = [setId];
 				await client.query(deleteFlashcardsQuery, flashcardValues);
 
+				const deleteFolderConnectionsQuery = 'DELETE FROM FlashcardSetInFolder WHERE '
+				+ 'flashcard_set_id = $1';
+				const connectionValues = [setId];
+				await client.query(deleteFolderConnectionsQuery, connectionValues);
+
 				await client.query('COMMIT');
 				response.status(200);
 				response.send();
