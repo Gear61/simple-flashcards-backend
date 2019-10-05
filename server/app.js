@@ -3,7 +3,7 @@ const app = express();
 
 // POST body parsing
 const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 require('./routes')(app);
