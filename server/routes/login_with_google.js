@@ -13,6 +13,7 @@ const authHelper  = require(require('path').resolve(__dirname, './auth_helper.js
 module.exports = function(app) {
 	app.post('/onboarding/google', function(request, response) {
 		const idToken = request.body['auth_token'];
+		console.log("Onboarding with GOOGLE with token: " + idToken);
 		verifyGoogleToken(idToken, response)
 		.catch(exception => {
 			console.error(exception.stack)
@@ -28,10 +29,21 @@ async function verifyGoogleToken(token, response) {
 		audience: GOOGLE_CLIENT_ID,
 	});
 	const payload = ticket.getPayload();
+	console.log(JSON.stringify(payload));
+
+	if (!('email' in payload)) {
+		response.status(401);
+		response.send({error: 'No email tied to this Google account'});
+		return;
+	}
 
 	const name = payload.name;
 	const email = payload.email;
-	const profilePictureUrl = payload.picture
+	const profilePictureUrl = payload.picture;
+
+	console.log("GOOGLE onboarding with - EMAIL: " + email + " || NAME: " + name
+		+ " || PROFILE PICTURE: " + profilePictureUrl);
+
 	signUp(name, email, profilePictureUrl, 'GOOGLE', response);
 }
 
@@ -83,7 +95,7 @@ async function signUp(name, email, profilePictureUrl, loginType, response) {
 
 async function createAccount(name, email, profilePictureUrl, loginType, response) {
 	const insert_query = 'INSERT INTO Account(name, email, profile_picture_url, login_type) ' +
-	'VALUES($1, $2, $3, $4) RETURNING id, name, email, profile_picture_url'
+	'VALUES($1, $2, $3, $4) RETURNING id'
 	const values = [name, email, profilePictureUrl, loginType];
 
 	const client = await pool.connect();
@@ -95,9 +107,9 @@ async function createAccount(name, email, profilePictureUrl, loginType, response
 		var authToken = authHelper.sign(payload);
 		var responseJson = {
 			auth_token: authToken,
-			name: res.rows[0].name,
-			email: res.rows[0].email,
-			profile_picture_url: res.rows[0].profile_picture_url,
+			name: name,
+			email: email,
+			profile_picture_url: profilePictureUrl,
 			new_account: true
 		}
 
