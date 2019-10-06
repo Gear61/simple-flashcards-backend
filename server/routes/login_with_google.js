@@ -33,7 +33,8 @@ async function verifyGoogleToken(token, response) {
 
 	if (!('email' in payload)) {
 		response.status(401);
-		response.send({error: 'No email tied to this Google account'});
+		response.send({error: 'An email address is necessary to create an account, ' +
+					'and there isn\'t one tied to your Google account'});
 		return;
 	}
 

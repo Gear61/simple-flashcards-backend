@@ -18,6 +18,13 @@ module.exports = function(app) {
 				return;
 			}
 
+			if (!('email' in user_info)) {
+				response.status(401);
+				response.send({error: 'An email address is necessary to create an account, ' +
+					'and there isn\'t one tied to your Facebook account'});
+				return;
+			}
+
 			const name = user_info.name;
 			const email = user_info.email;
 			const profilePictureUrl = "https://graph.facebook.com/" + user_info.id + "/picture?type=large";
