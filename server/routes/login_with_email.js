@@ -58,6 +58,9 @@ module.exports = function(app) {
 				}
 				// Account doesn't exist, sign up flow
 				else {
+					console.log("Creating an account for \"" + name + "\" with email \"" +
+						email + "\" using " + loginType + " flow");
+
 					const createAccountQuery = 'INSERT INTO Account(name, email, profile_picture_url, ' +
 						'login_type) VALUES($1, $2, $3, $4) RETURNING id'
 					const createAccountValues = [name, email, profilePictureUrl, loginType];
