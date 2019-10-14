@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-
+import './styles/app.scss';
 const element = <h1>Hello, world</h1>;
 
 console.log('aosifdjaosidfjasodf');
