@@ -1,0 +1,1 @@
+to build the client, run `npm run build-client` either on the root level or in client. It should recreate a new js bundle in the server/public folder, which is serves assets to the route `{hostname}/static`. Note that right now we're not distinguishing between a prod env and a dev one, though maybe this will become relevant at some point.
