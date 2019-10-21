@@ -28,7 +28,7 @@ module.exports = {
                   'sass-loader',
                 ],
             }
-        ]
+        ],
     },
     stats: {
         colors: true
