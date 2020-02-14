@@ -33,7 +33,6 @@ module.exports = function(app) {
 						'definition': res.rows[i]['definition'],
 						'term_image_url': res.rows[i]['term_image_url'],
 						'definition_image_url': res.rows[i]['definition_image_url'],
-						'learned': res.rows[i]['learned'],
 						'position': res.rows[i]['position']
 					};
 					flashcardsList.push(flashcardToAdd);
