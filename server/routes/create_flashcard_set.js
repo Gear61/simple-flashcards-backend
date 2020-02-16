@@ -22,7 +22,7 @@ module.exports = function(app) {
 			
 			var requestBody = request.body;
 			var localSetId = requestBody['local_id'];
-			var quizletSetId = requestBody['quizlet_set_id'];
+			var originalSetId = requestBody['original_set_id'];
 			var setName = requestBody['name'];
 			var flashcardsList = requestBody['flashcards'];
 
@@ -31,9 +31,9 @@ module.exports = function(app) {
 				await client.query('BEGIN');
 
 				var setId = uuidv4();
-				const insertQuery = 'INSERT INTO FlashcardSet(id, user_id, quizlet_set_id, name) ' +
+				const insertQuery = 'INSERT INTO FlashcardSet(id, user_id, original_set_id, name) ' +
 				'VALUES($1, $2, $3, $4)';
-				const values = [setId, userId, quizletSetId, setName];
+				const values = [setId, userId, originalSetId, setName];
 				await client.query(insertQuery, values);
 
 				var addedSet = {

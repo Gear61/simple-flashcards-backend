@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS FlashcardSet (
 	definitions_language INT DEFAULT 0
 );
 
+ALTER TABLE FlashcardSet ADD original_set_id varchar(64);
+
 CREATE TABLE IF NOT EXISTS Flashcard (
 	id varchar(64),
 	flashcard_set_id varchar(64),

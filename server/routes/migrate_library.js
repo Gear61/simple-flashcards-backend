@@ -38,7 +38,7 @@ module.exports = function(app) {
 				console.log("MIGRATE LIBRARY - # of sets to migrate: " + setListLength);
 				for (var i = 0; i < setListLength; i++) {
 					var localSetId = setsList[i]['local_id'];
-					var quizletSetId = setsList[i]['quizlet_set_id'];
+					var originalSetId = setsList[i]['original_set_id'];
 					var setName = setsList[i]['name'];
 					var termsLanguage = setsList[i]['terms_language'];
 					var definitionsLanguage = setsList[i]['definitions_language'];
@@ -46,10 +46,10 @@ module.exports = function(app) {
 					var serverSetId = uuidv4();
 
 					// Insert flashcard set into DB
-					var insertQuery = 'INSERT INTO FlashcardSet(id, user_id, quizlet_set_id, name, ' +
+					var insertQuery = 'INSERT INTO FlashcardSet(id, user_id, original_set_id, name, ' +
 					'terms_language, definitions_language) VALUES($1, $2, $3, $4, $5, $6)';
 
-					var values = [serverSetId, userId, quizletSetId, setName,
+					var values = [serverSetId, userId, originalSetId, setName,
 					termsLanguage, definitionsLanguage];
 					await client.query(insertQuery, values);
 

@@ -31,7 +31,7 @@ module.exports = function(app) {
 					const setId = dataElement['id'];
 					var setToAdd = {
 						'id': setId,
-						'quizlet_set_id': dataElement['quizlet_set_id'],
+						'original_set_id': dataElement['original_set_id'],
 						'name': dataElement['name'],
 						'terms_language': dataElement['terms_language'],
 						'definitions_language': dataElement['definitions_language']

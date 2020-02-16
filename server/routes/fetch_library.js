@@ -37,7 +37,7 @@ module.exports = function(app) {
 					const setId = flashcardSets[i]['id'];
 					var setToAddIntoResponse = {
 						'id': setId,
-						'quizlet_set_id': flashcardSets[i]['quizlet_set_id'],
+						'original_set_id': flashcardSets[i]['original_set_id'],
 						'name': flashcardSets[i]['name'],
 						'terms_language': flashcardSets[i]['terms_language'],
 						'definitions_language': flashcardSets[i]['definitions_language'],
