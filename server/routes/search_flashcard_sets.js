@@ -19,9 +19,11 @@ module.exports = function(app) {
 			var wrappedInput = '%' + searchInput + '%';
 
 			const query = 'SELECT * FROM '
-			    + '(SELECT FlashcardSet.id as set_id, name as set_name, count(*) as num_flashcards '
+			    + '(SELECT FlashcardSet.id as set_id, name as set_name, count(*) as num_flashcards, '
+			    + 'terms_language, definitions_language '
 			 	+ 'FROM FlashcardSet INNER JOIN Flashcard ON FlashcardSet.id = Flashcard.flashcard_set_id ' 
-				+ 'WHERE user_id != $1 AND name ILIKE $2 GROUP BY FlashcardSet.id, name LIMIT 35) AS A '
+				+ 'WHERE user_id != $1 AND name ILIKE $2 GROUP BY FlashcardSet.id, name, '
+				+ 'terms_language, definitions_language LIMIT 35) AS A '
 				+ 'WHERE num_flashcards > 0';
 			const values = [userId, wrappedInput];
 
@@ -33,6 +35,8 @@ module.exports = function(app) {
 					var setToAdd = {
 						'set_id': res.rows[i]['set_id'],
 						'set_name': res.rows[i]['set_name'],
+						'terms_language': res.rows[i]['terms_language'],
+						'definitions_language': res.rows[i]['definitions_language'],
 						'num_flashcards': res.rows[i]['num_flashcards']
 					};
 					flashcardSetsList.push(setToAdd);
