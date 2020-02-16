@@ -24,6 +24,8 @@ module.exports = function(app) {
 			var localSetId = requestBody['local_id'];
 			var originalSetId = requestBody['original_set_id'];
 			var setName = requestBody['name'];
+			var termsLanguage = requestBody['terms_language'];
+			var definitionsLanguage = requestBody['definitions_language'];
 			var flashcardsList = requestBody['flashcards'];
 
 			const client = await pool.connect();
@@ -31,9 +33,10 @@ module.exports = function(app) {
 				await client.query('BEGIN');
 
 				var setId = uuidv4();
-				const insertQuery = 'INSERT INTO FlashcardSet(id, user_id, original_set_id, name) ' +
-				'VALUES($1, $2, $3, $4)';
-				const values = [setId, userId, originalSetId, setName];
+				const insertQuery = 'INSERT INTO FlashcardSet(id, user_id, original_set_id, name, '
+					+ 'terms_language, definitions_language) '
+					+ 'VALUES($1, $2, $3, $4, $5, $6)';
+				const values = [setId, userId, originalSetId, setName, termsLanguage, definitionsLanguage];
 				await client.query(insertQuery, values);
 
 				var addedSet = {
