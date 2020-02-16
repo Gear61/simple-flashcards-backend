@@ -3,20 +3,26 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true
 });
+const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
 	app.post('/flashcard_set/search', async (request, response) => {
 		try {
+			var authToken = request.header('auth_token');
+			var expandedToken = authHelper.verify(authToken);
+			var userId = expandedToken ? expandedToken['user_id'] : -1;
+
 			var requestBody = request.body;
-			var userId = requestBody['user_id'];
 			var searchInput = requestBody['search_input'];
 
 			// We need to wrap the input, so we do a contains search
 			var wrappedInput = '%' + searchInput + '%';
 
-			const query = 'SELECT FlashcardSet.id as set_id, name as set_name, count(*) as num_flashcards '
+			const query = 'SELECT * FROM '
+			    + '(SELECT FlashcardSet.id as set_id, name as set_name, count(*) as num_flashcards '
 			 	+ 'FROM FlashcardSet INNER JOIN Flashcard ON FlashcardSet.id = Flashcard.flashcard_set_id ' 
-				+ 'WHERE user_id != $1 AND name ILIKE $2 GROUP BY FlashcardSet.id, name LIMIT 30';
+				+ 'WHERE user_id != $1 AND name ILIKE $2 GROUP BY FlashcardSet.id, name LIMIT 35) AS A '
+				+ 'WHERE num_flashcards > 0';
 			const values = [userId, wrappedInput];
 
 			const client = await pool.connect();
