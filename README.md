@@ -1,12 +1,12 @@
 ## Running Locally
 The API will start listening at http://localhost:5000.
 ```
-heroku local web
+npm run dev
 ```
 
 ## Access The Database
 ```
-heroku pg:psql
+heroku pg:psql -a simple-flashcards-backend
 ```
 
 ## Run .sql Script From Within Postgres CLI
