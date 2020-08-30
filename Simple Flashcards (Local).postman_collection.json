@@ -18,13 +18,13 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"local_id\": 15,\n\t\"name\": \"Postman Test Set\",\n\t\"quizlet_set_id\": 943243,\n\t\"flashcards\": [\n\t\t{\n\t\t\t\"local_id\": 10,\n\t\t\t\"term\": \"In the shallow\",\n\t\t\t\"definition\": \"We're far from the shallow now\",\n\t\t\t\"term_image_url\": \"www.pusheen.com\"\n\t\t},\n\t\t{\n\t\t\t\"local_id\": 11,\n\t\t\t\"term\": \"I'm off the deep end\",\n\t\t\t\"definition\": \"Watch as I dive in\",\n\t\t\t\"definition_image_url\": \"www.mamegoma.com\"\n\t\t}\n\t]\n}"
+					"raw": "{\n\t\"local_id\": 15,\n\t\"name\": \"Postman Test Set 2\",\n\t\"original_set_id\": \"red_dead_redemption\",\n\t\"terms_language\": 7,\n\t\"definitions_language\": 10, \n\t\"flashcards\": [\n\t\t{\n\t\t\t\"local_id\": 10,\n\t\t\t\"term\": \"In the shallow\",\n\t\t\t\"definition\": \"We're far from the shallow now\",\n\t\t\t\"term_image_url\": \"https://i.pinimg.com/originals/ea/db/63/eadb63ebb73e1aae39e705d9ae79163b.jpg\"\n\t\t},\n\t\t{\n\t\t\t\"local_id\": 11,\n\t\t\t\"term\": \"I'm off the deep end\",\n\t\t\t\"definition\": \"Watch as I dive in\"\n\t\t}\n\t]\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/create",
@@ -114,7 +114,7 @@
 			"response": []
 		},
 		{
-			"name": "Fetch sets for user",
+			"name": "Fetch sets for user (DEPRECATED)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -126,7 +126,7 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
 						"type": "text"
 					}
 				],
@@ -168,7 +168,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"set_id\": 2\n}"
+					"raw": "{\n\t\"set_id\": \"0059e63d-1991-432a-8639-e27e41d9b4e9\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/fetch_cards",
@@ -302,7 +302,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"auth_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiZjg0MThiMjk2M2YzNjZmNWZlZmRkMTI3YjJjZWUwN2M4ODdlNjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMzY3NDMwOTQzMzUtbXI4YjJoODcydTk2ZDUzY2MzMGgyZGVpdjVsamtoZW8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzMzY3NDMwOTQzMzUtNWk5Z25kZDBiOHNvNmRwNzI3amdlYWYwMGNvMmVsbXMuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDUyMzU5ODY4MTI2MzcyNDAzMzciLCJlbWFpbCI6InJhbmRvbWFwcHNpbmM2MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsZXggQ2hpb3UiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1BUWZFOVhhcjU0TS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BQ0hpM3JkUGJqTlkyZ0lBd0J1T0NlNWtBMGhDUmQ2c25RL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbGV4IiwiZmFtaWx5X25hbWUiOiJDaGlvdSIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNTY4OTU5MjQxLCJleHAiOjE1Njg5NjI4NDF9.UlrAwz3pXrUhuGyoUEW4yiI_ga1TvD21pRjqy9u_QwZZzzuaCD5D0XP27aqfr9Hgkl_7uXBgKr8xaRPFTOYKGicNdBzei_e8eClvu2ngrFYO3chzyNu2LTshywnsooAezKSfo_-s2QZfFQZzzFuIijvyPSz366q3exwMZHHzlgd1wa4rRD8TUYV6Pov_GCABKjHY7I_uJYCjUNLGaI2i6ja8_YwyqRLSQnuBF8nB1tuPR6yDYxYO1FUnZlSERJ91SXWX0gtVU2O3OBN5j3gKmkLvpCi5CAmA32HwN-7bXAM6kqwK-0rZ2MRF9TRQMhczU5uDtfqlpNmIYoH7r9ibfQ\"\n}"
+					"raw": "{\n\t\"auth_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjhjNThlMTM4NjE0YmQ1ODc0MjE3MmJkNTA4MGQxOTdkMmIyZGQyZjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0MzczOTIyNjYzNjYtMnA1OHZ2aTVkMnF0YTU1bDc4YW8yNGhsOXJjdWNraW4uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0MzczOTIyNjYzNjYtNTZtZmRmaGp1a2FvcWFnYW83YTMycjBqdWs2bXQ4cWsuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIzODA0OTM4Njc2NjMzNTgyODAiLCJlbWFpbCI6ImNoZXNzbm9uZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsZXhhbmRlciBDaGlvdSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQUF1RTdtQm12QmNRdEJiNzM2YVpncU4wM3ZlTXl2eDFmVERkTnhCWmZhRW53UT1zOTYtYyIsImdpdmVuX25hbWUiOiJBbGV4YW5kZXIiLCJmYW1pbHlfbmFtZSI6IkNoaW91IiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1NzAzOTE1MTIsImV4cCI6MTU3MDM5NTExMn0.k9o3YHeAbLqUayhMxox-AcWV3Y5umJN7MpBlVhps9T0L7hbv5STzgZQKsSCgodknA2qeFGgTh1rWskmd9o0eiasEIG01nstNUyBhbCPtKjhhMyHtYXq0d7D0Af-hRdm0G1lSDBh1-oTnSiZk40doPmUQCXvTNqP5T74U8wF9lI_QRJ2k_nGyYArIGcEvnP1Trb2kV6OHuwZynfyNh00rSv2tSQ1e28ivJlZvGNMNGh42XRETZnSJhoJdIwhwGOZW7SNsIecya0NN72sPNCsc6ufXdVbfN1X0PTnNokucnNAy5a64AyF-fjU02Pon6hZsuLqGmpy7CCRoq9jQ09adfQ\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/onboarding/google",
@@ -553,7 +553,7 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
 						"type": "text"
 					}
 				],
@@ -931,6 +931,115 @@
 					"path": [
 						"user",
 						"fetch_folders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "RmKZ5bb8fW",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"chessnone@gmail.com\",\n\t\"name\": \"Alexander Chiou\",\n\t\"profile_picture_url\": \"https://cdn.cnn.com/cnnnext/dam/assets/190219065032-03-bernie-sanders-lead-image-1128-exlarge-169.jpg\",\n\t\"login_type\": \"GOOGLE\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/onboarding/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"onboarding",
+						"email"
+					]
+				},
+				"description": "Token things aren't working :("
+			},
+			"response": []
+		},
+		{
+			"name": "Search flashcard sets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"search_input\": \"Jim Milton\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch sets for user v2 (5 at a time, pagination)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjc3MywiaWF0IjoxNTgyNDIxNTY2LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.B8sqaHc-QBo_j2gfqzyozXSkmxKThhGmJrrx7TPtz-H7rxOo-8URyK7jex08w4PbXIX86IWZF6_i8u8GRU9zpA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/fetch_flashcard_sets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"fetch_flashcard_sets"
 					]
 				}
 			},
