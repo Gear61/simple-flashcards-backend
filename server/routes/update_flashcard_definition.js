@@ -1,8 +1,4 @@
-const { Pool } = require('pg');
-const pool = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: true
-});
+const pool = require('../lib/db').getPool();
 const authHelper = require(require('path').resolve(__dirname, './auth_helper.js'));
 
 module.exports = function(app) {
