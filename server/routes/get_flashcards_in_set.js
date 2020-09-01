@@ -1,8 +1,4 @@
-const { Pool } = require('pg');
-const pool = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: true
-});
+const pool = require('../lib/db').getPool();
 
 module.exports = function(app) {
 	app.post('/flashcard_set/fetch_cards', async (request, response) => {
