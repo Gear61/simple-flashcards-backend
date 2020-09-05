@@ -16,7 +16,7 @@ module.exports = function(app) {
 				return;
 			}
 
-			const query = 'SELECT * FROM FlashcardSet WHERE user_id = $1'
+			const query = 'SELECT * FROM FlashcardSet WHERE user_id = $1 AND deleted = false'
 			const values = [userId];
 
 			const client = await pool.connect();
@@ -33,7 +33,7 @@ module.exports = function(app) {
 						'definitions_language': dataElement['definitions_language']
 					};
 
-					const flashcardQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1'
+					const flashcardQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1 AND deleted = false'
 					const flashcardValues = [setId];
 
 					client.query(flashcardQuery, flashcardValues)

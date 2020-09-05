@@ -21,7 +21,7 @@ module.exports = function(app) {
 
 				var jsonResponse = [];
 
-				const foldersQuery = 'SELECT * FROM Folder WHERE user_id = $1'
+				const foldersQuery = 'SELECT * FROM Folder WHERE user_id = $1 AND deleted = false'
 				const foldersValues = [userId];
 				const folderResults = await client.query(foldersQuery, foldersValues);
 				const folders = folderResults.rows;
@@ -33,7 +33,7 @@ module.exports = function(app) {
 						'flashcard_set_ids': []
 					}
 
-					const setsInFolderQuery = 'SELECT * FROM FlashcardSetInFolder WHERE folder_id = $1'
+					const setsInFolderQuery = 'SELECT * FROM FlashcardSetInFolder WHERE folder_id = $1 AND deleted = false'
 					const setsInFolderValues = [folderId];
 					const setsInFolderResults = await client.query(setsInFolderQuery, setsInFolderValues);
 					const setsInFolders = setsInFolderResults.rows;
