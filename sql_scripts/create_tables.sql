@@ -1,16 +1,7 @@
 -- Let the db update updated_at
 -- https://x-team.com/blog/automatic-timestamps-with-postgresql/
 
-START TRANSACTION
-
-CREATE OR REPLACE FUNCTION trigger_set_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = NOW();
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
+-- Moved function to add_timestamp.sql
 -- You can't create a table named User in Postgres; it is a reserved keyword
 CREATE TABLE IF NOT EXISTS Account (
 	id SERIAL,
@@ -30,17 +21,10 @@ CREATE TABLE IF NOT EXISTS FlashcardSet (
 	definitions_language INT DEFAULT 0
 );
 
-ALTER TABLE FlashcardSet ADD original_set_id varchar(64);
-ALTER TABLE FlashcardSet ADD deleted BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE FlashcardSet ADD created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-ALTER TABLE FlashcardSet ADD updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-
--- There is no create trigger if not exists. Recommended is to in a transaction drop and then add
-DROP TRIGGER set_timestamp IF EXISTS ON FlashcardSet;
-CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON FlashcardSet
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_timestamp();
+ALTER TABLE FlashcardSet ADD COLUMN IF NOT EXISTS original_set_id varchar(64);
+ALTER TABLE FlashcardSet ADD COLUMN IF NOT EXISTS deleted BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE FlashcardSet ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+ALTER TABLE FlashcardSet ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 CREATE TABLE IF NOT EXISTS Flashcard (
 	id varchar(64),
@@ -53,14 +37,9 @@ CREATE TABLE IF NOT EXISTS Flashcard (
 	position INT DEFAULT 0
 );
 
-ALTER TABLE Flashcard ADD deleted BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE Flashcard ADD created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-ALTER TABLE Flashcard ADD updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-DROP TRIGGER set_timestamp IF EXISTS ON Flashcard;
-CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON Flashcard
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_timestamp();
+ALTER TABLE Flashcard ADD COLUMN IF NOT EXISTS deleted BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE Flashcard ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+ALTER TABLE Flashcard ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 CREATE TABLE IF NOT EXISTS Folder (
 	id varchar(64),
@@ -68,14 +47,9 @@ CREATE TABLE IF NOT EXISTS Folder (
 	name varchar(256)
 );
 
-ALTER TABLE Folder ADD deleted BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE Folder ADD created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-ALTER TABLE Folder ADD updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-DROP TRIGGER set_timestamp IF EXISTS ON Folder;
-CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON Folder
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_timestamp();
+ALTER TABLE Folder ADD COLUMN IF NOT EXISTS deleted BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE Folder ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+ALTER TABLE Folder ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 
 CREATE TABLE IF NOT EXISTS FlashcardSetInFolder (
@@ -83,13 +57,6 @@ CREATE TABLE IF NOT EXISTS FlashcardSetInFolder (
 	folder_id varchar(64)
 );
 
-ALTER TABLE FlashcardSetInFolder ADD deleted BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE FlashcardSetInFolder ADD created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-ALTER TABLE FlashcardSetInFolder ADD updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-DROP TRIGGER set_timestamp IF EXISTS ON FlashcardSetInFolder;
-CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON FlashcardSetInFolder
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_timestamp();
-
-COMMIT
+ALTER TABLE FlashcardSetInFolder ADD COLUMN IF NOT EXISTS deleted BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE FlashcardSetInFolder ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+ALTER TABLE FlashcardSetInFolder ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
