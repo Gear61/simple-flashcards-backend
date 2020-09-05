@@ -6,7 +6,7 @@ module.exports = function(app) {
 			var requestBody = request.body;
 			var setId = requestBody['set_id'];
 
-			const query = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1'
+			const query = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1 AND deleted = false'
 			const values = [setId];
 
 			const client = await pool.connect();

@@ -21,7 +21,7 @@ module.exports = function(app) {
 				await client.query('BEGIN');
 
 				const deleteConnectionQuery =
-				'DELETE FROM FlashcardSetInFolder WHERE folder_id = $1 and flashcard_set_id = $2';
+				'UPDATE FlashcardSetInFolder SET deleted = true WHERE folder_id = $1 and flashcard_set_id = $2';
 				const deleteConnectionsValues = [folderId, setId];
 				await client.query(deleteConnectionQuery, deleteConnectionsValues);
 

@@ -31,7 +31,7 @@ module.exports = function(app) {
 					return;
 				}
 
-				const deleteSetQuery = 'DELETE FROM FlashcardSet WHERE id = $1';
+				const deleteSetQuery = 'UPDATE FlashcardSet SET deleted = true WHERE id = $1';
 				const setValues = [setId];
 				await client.query(deleteSetQuery, setValues);
 

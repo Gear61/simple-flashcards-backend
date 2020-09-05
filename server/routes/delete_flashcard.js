@@ -15,7 +15,8 @@ module.exports = function(app) {
 			var requestBody = request.body;
 			var flashcardId = requestBody['id'];
 
-			const deleteQuery = 'DELETE FROM Flashcard WHERE id = $1';
+			const deleteQuery = 'UPDATE Flashcard SET deleted = true WHERE id = $1';
+			// TODO: Probably also need to update FlashCardSetInFolder
 			const values = [flashcardId];
 
 			const client = await pool.connect();
