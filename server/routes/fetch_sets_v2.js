@@ -20,7 +20,7 @@ module.exports = function(app) {
 			var lastSetIdParameter = request.body['last_set_id'];
 			var lastSetId = lastSetIdParameter ? lastSetIdParameter : -1;
 
-			const query = 'SELECT * FROM FlashcardSet WHERE user_id = $1 AND numeric_id > $2 '
+			const query = 'SELECT * FROM FlashcardSet WHERE user_id = $1 AND numeric_id > $2 AND deleted = false '
 				+ 'ORDER BY numeric_id ASC LIMIT 3';
 			const values = [userId, lastSetId];
 
@@ -39,7 +39,7 @@ module.exports = function(app) {
 						'definitions_language': dataElement['definitions_language']
 					};
 
-					const flashcardQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1'
+					const flashcardQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1 AND deleted = false'
 					const flashcardValues = [setId];
 
 					client.query(flashcardQuery, flashcardValues)

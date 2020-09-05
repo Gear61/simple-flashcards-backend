@@ -17,7 +17,7 @@ module.exports = function(app) {
 			const query = 'SELECT * FROM '
 			    + '(SELECT FlashcardSet.id as set_id, name as set_name, count(*) as num_flashcards, '
 			    + 'terms_language, definitions_language '
-			 	+ 'FROM FlashcardSet INNER JOIN Flashcard ON FlashcardSet.id = Flashcard.flashcard_set_id ' 
+			 	+ 'FROM FlashcardSet INNER JOIN Flashcard ON FlashcardSet.id = Flashcard.flashcard_set_id AND FlashcardSet.deleted = false ' 
 				+ 'WHERE user_id != $1 AND name ILIKE $2 GROUP BY FlashcardSet.id, name, '
 				+ 'terms_language, definitions_language LIMIT 35) AS A '
 				+ 'WHERE num_flashcards > 0';

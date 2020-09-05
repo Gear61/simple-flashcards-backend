@@ -21,7 +21,7 @@ module.exports = function(app) {
 
 				console.log("Deleting folder with ID: " + folderId);
 
-				const deleteFolderQuery = 'DELETE FROM Folder WHERE id = $1';
+				const deleteFolderQuery = 'UPDATE Folder SET deleted = true WHERE id = $1';
 				const deleteFolderValues = [folderId];
 				await client.query(deleteFolderQuery, deleteFolderValues);
 

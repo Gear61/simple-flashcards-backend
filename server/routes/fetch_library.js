@@ -24,7 +24,7 @@ module.exports = function(app) {
 					'folders': []
 				};
 
-				const setsQuery = 'SELECT * FROM FlashcardSet WHERE user_id = $1'
+				const setsQuery = 'SELECT * FROM FlashcardSet WHERE user_id = $1 AND deleted = false'
 				const setsValues = [userId];
 				const result = await client.query(setsQuery, setsValues);
 
@@ -40,7 +40,7 @@ module.exports = function(app) {
 						'flashcards': []
 					}
 
-					const flashcardsQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1'
+					const flashcardsQuery = 'SELECT * FROM Flashcard WHERE flashcard_set_id = $1 AND deleted = false'
 					const flashcardsValues = [setId];
 					const flashcardResults = await client.query(flashcardsQuery, flashcardsValues);
 					const flashcards = flashcardResults.rows;
@@ -61,7 +61,7 @@ module.exports = function(app) {
 					jsonResponse['flashcard_sets'].push(setToAddIntoResponse);
 				}
 
-				const foldersQuery = 'SELECT * FROM Folder WHERE user_id = $1'
+				const foldersQuery = 'SELECT * FROM Folder WHERE user_id = $1 AND deleted = false'
 				const foldersValues = [userId];
 				const folderResults = await client.query(foldersQuery, foldersValues);
 				const folders = folderResults.rows;
@@ -73,7 +73,7 @@ module.exports = function(app) {
 						'flashcard_set_ids': []
 					}
 
-					const setsInFolderQuery = 'SELECT * FROM FlashcardSetInFolder WHERE folder_id = $1'
+					const setsInFolderQuery = 'SELECT * FROM FlashcardSetInFolder WHERE folder_id = $1 AND deleted = false'
 					const setsInFolderValues = [folderId];
 					const setsInFolderResults = await client.query(setsInFolderQuery, setsInFolderValues);
 					const setsInFolders = setsInFolderResults.rows;
