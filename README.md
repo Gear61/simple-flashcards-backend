@@ -5,8 +5,15 @@ heroku local web
 ```
 
 ## Access The Database
+
+### Connect to production database
 ```
 heroku pg:psql
+```
+
+### Connect to dev (free 10,000 rows version) database
+```
+heroku pg:psql postgresql-corrugated-32743 --app simple-flashcards-backend
 ```
 
 ## Run .sql Script From Within Postgres CLI
