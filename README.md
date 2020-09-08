@@ -1,5 +1,9 @@
 ## Running Locally
-The API will start listening at http://localhost:5000.
+First, make sure all dependencies are up to date:
+```
+npm install
+```
+Now you can run the server on your localhost. The API will start listening at http://localhost:5000.
 ```
 npm run dev
 ```
