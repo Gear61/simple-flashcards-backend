@@ -6,7 +6,6 @@ const moment = require('moment');
 const _ = require('lodash');
 
 const connectionData = () => {
-  //console.log("DB URL:", process.env.DATABASE_URL)
   return {
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },

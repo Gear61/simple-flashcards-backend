@@ -15,17 +15,13 @@ module.exports = function(request, response) {
     response.send();
     return;
   }
-  // expandedToken = { // When debugging locally
-  //   user_id: 10708
-  // }
   const { user_id } = expandedToken;
   const { body } = request;
   const { time_last_updated } = body;
 
   try {
     const { timeUpdated, timeString } = dbLib.parseTime(time_last_updated);
-    
-    //Query
+
     db
       .select('*')
       .from('flashcardset')

@@ -20,13 +20,12 @@ module.exports = function(request, response) {
 
   try {
     const { timeUpdated, timeString } = dbLib.parseTime(time_last_updated);
-    //Query
+
     db
       .select('*')
       .from('flashcard')
       .where('updated_at', '>', timeString)
       .andWhere({flashcard_set_id: flashcard_set_id})
-      // .limit(1) // TODO: support pagination
       .then(function(rows) {
         const flashcards = _.chain(rows)
           .map(
