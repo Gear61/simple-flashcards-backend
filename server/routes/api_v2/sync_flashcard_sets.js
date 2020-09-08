@@ -10,13 +10,10 @@ module.exports = function(request, response) {
   // TODO: Move Auth Token into an Express Middleware Library
   var authToken = request.header('auth_token');
   var expandedToken = authHelper.verify(authToken);
-  // if (!expandedToken) {
-  //   response.status(401);
-  //   response.send();
-  //   return;
-  // }
-  expandedToken = {
-    user_id : 12773
+  if (!expandedToken) {
+    response.status(401);
+    response.send();
+    return;
   }
   const { user_id } = expandedToken;
   const { body } = request;
@@ -25,9 +22,9 @@ module.exports = function(request, response) {
   try {
     const { timeUpdated, timeString } = dbLib.parseTime(time_last_updated);
 
-    // Knex functions modify the original instead of returning a copy so have start from db.
-    const count_subquery = db.from('flashcard').where('flashcard.flashcard_set_id', '=', db.raw('flashcardset.id')).count('flashcard.id');
-    const learned_subquery = db.from('flashcard').where('flashcard.flashcard_set_id', '=', db.raw('flashcardset.id')).andWhere({'flashcard.learned': true}).count('flashcard.id');
+    // TODO: Convert these to working left outer join or using with clauses if there is a performance need
+    const count_subquery = db.from('flashcard').where({'flashcard.flashcard_set_id': db.ref('flashcardset.id')}).count('flashcard.id');
+    const learned_subquery = count_subquery.clone().andWhere({'flashcard.learned': true});
     db
       .select(
         '*',
