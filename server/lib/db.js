@@ -9,7 +9,7 @@ const connectionData = () => {
   return {
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
-    connectionTimeoutMillis: 2000, // Raise an error instead of hanging if the connection cannot connect within 2s
+    connectionTimeoutMillis: 20000, // Raise an error instead of hanging if the connection cannot connect within 2s
     idleTimeoutMillis: 5000, // Close this connection if unclosed and unused for more than  5s
   }
 }
@@ -29,7 +29,7 @@ module.exports.parseTime = (time) => {
   const unix = /^[\d]+$/
   const dbFormat = "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]"
   if (_.isNumber(time) || !_.isNil(time.match(unix))) { // If we get a unix timestamp in the JSON or a string with a unix timestamp
-    const parsedTime = moment.unix(time)
+    const parsedTime = moment.unix(time).utc()
     return { timeUpdated: parsedTime, timeString: parsedTime.format(dbFormat) };
   } else {
     const parsedTime = moment.utc(time);
