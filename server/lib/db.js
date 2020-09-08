@@ -2,8 +2,11 @@
 
 const { Pool } = require('pg');
 const knex = require('knex');
+const moment = require('moment');
+const _ = require('lodash');
 
 const connectionData = () => {
+  //console.log("DB URL:", process.env.DATABASE_URL)
   return {
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
@@ -21,4 +24,16 @@ module.exports.queryBuilder = () => {
     client: 'pg',
     connection: connectionData(),
   });
+}
+
+module.exports.parseTime = (time) => {
+  const unix = /^[\d]+$/
+  const dbFormat = "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]"
+  if (_.isNumber(time) || !_.isNil(time.match(unix))) { // If we get a unix timestamp in the JSON or a string with a unix timestamp
+    const parsedTime = moment.unix(time)
+    return { timeUpdated: parsedTime, timeString: parsedTime.format(dbFormat) };
+  } else {
+    const parsedTime = moment.utc(time);
+    return { timeUpdated: parsedTime, timeString: parsedTime.format(dbFormat) };
+  }
 }
