@@ -6,6 +6,44 @@
 	},
 	"item": [
 		{
+			"name": "Fetch flashcard sets for user (V2)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"time_last_updated\": 1599536558\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v2/flashcard_sets/sync",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"flashcard_sets",
+						"sync"
+					]
+				},
+				"description": "Fetches enough information to render the homepage."
+			},
+			"response": []
+		},
+		{
 			"name": "Create flashcard set",
 			"request": {
 				"method": "POST",
@@ -60,7 +98,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"local_id\": 180,\n\t\"set_id\": \"b2206915-d75f-43a8-86de-f689abf1befa\",\n\t\"term\": \"What is 350 + 69?\",\n\t\"definition\": \"419\",\n\t\"position\": 9000\n}"
+					"raw": "{\n\t\"local_id\": 180,\n\t\"set_id\": \"1e53c758-d38b-4970-b274-f559296f5766\",\n\t\"term\": \"NEW FLASHCARD: What is 350 + 69?\",\n\t\"definition\": \"419\",\n\t\"position\": 3\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -992,7 +1030,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"search_input\": \"Jim Milton\"\n}"
+					"raw": "{\n\t\"search_input\": \"History\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard_set/search",
