@@ -1,8 +1,9 @@
 ## Running Locally
 The API will start listening at http://localhost:5000.
 ```
-heroku local web
+npm run dev
 ```
+Any file changes will automatically be hot reloaded. To avoid watching certain files, update nodemon.json.
 
 ## Access The Database
 
