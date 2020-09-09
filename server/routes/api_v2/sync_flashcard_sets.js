@@ -22,8 +22,15 @@ module.exports = function(request, response) {
   try {
     const { timeUpdated, timeString } = dbLib.parseTime(time_last_updated);
 
+    // TODO: Convert these to working left outer join or using with clauses if there is a performance need
+    const count_subquery = db.from('flashcard').where({'flashcard.flashcard_set_id': db.ref('flashcardset.id')}).count('flashcard.id');
+    const learned_subquery = count_subquery.clone().andWhere({'flashcard.learned': true});
     db
-      .select('*')
+      .select(
+        '*',
+        db.raw(count_subquery.toString()).wrap('(', ') AS flashcards_count'),
+        db.raw(learned_subquery.toString()).wrap('(', ') AS learned_count')
+      )
       .from('flashcardset')
       .where('updated_at', '>', timeString)
       .andWhere({user_id: _.toNumber(user_id)})
@@ -37,9 +44,15 @@ module.exports = function(request, response) {
               } else if (moment.utc(row.created_at).isAfter(timeUpdated)) {
                 change_type = 'added'
               }
+              const flashcard_count = _.toNumber(row.flashcards_count);
+              const learned_count = _.toNumber(row.learned_count);
+              const learned_percent = flashcard_count > 0 ? (100.0 * learned_count / flashcard_count) : 0;
               return _.merge(row, {
                 time_last_updated: moment.utc(row.updated_at).unix(),
                 change_type: change_type,
+                flashcards_count: flashcard_count,
+                learned_count: learned_count,
+                learned_percent: learned_percent,
               })
             }
           )

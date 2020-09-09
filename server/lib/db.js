@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 const knex = require('knex');
 const moment = require('moment');
 const _ = require('lodash');
+const argv = require('minimist')(process.argv);
 
 const connectionData = () => {
   return {
@@ -22,6 +23,7 @@ module.exports.queryBuilder = () => {
   return knex({
     client: 'pg',
     connection: connectionData(),
+    debug: process.argv.dev || false,
   });
 }
 
