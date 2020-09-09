@@ -46,7 +46,7 @@ module.exports = function(request, response) {
               }
               const flashcard_count = _.toNumber(row.flashcards_count);
               const learned_count = _.toNumber(row.learned_count);
-              const learned_percent = flashcard_count > 0 ? learned_count / flashcard_count : 0;
+              const learned_percent = flashcard_count > 0 ? (100.0 * learned_count / flashcard_count) : 0;
               return _.merge(row, {
                 time_last_updated: moment.utc(row.updated_at).unix(),
                 change_type: change_type,
