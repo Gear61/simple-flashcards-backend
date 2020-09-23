@@ -18,13 +18,13 @@
 					},
 					{
 						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjc3MywiaWF0IjoxNjAwODk1NjkxLCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.I8qwmCUIM8Ad2XIMCOIZW5hKKpCYaSmEVQZfZP3VRMRXJ8puqVFEOJhjO38RC4DJv90-wyEbkdcpNiJp6nvyaQ",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"time_last_updated\": 1599536558\n}"
+					"raw": "{\n    \"time_last_updated\": 1600895826\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v2/flashcard_sets/sync",
@@ -40,6 +40,152 @@
 					]
 				},
 				"description": "Fetches enough information to render the homepage."
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch flashcards for flashcard set (V2)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjc3MywiaWF0IjoxNjAwODk1NjkxLCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.I8qwmCUIM8Ad2XIMCOIZW5hKKpCYaSmEVQZfZP3VRMRXJ8puqVFEOJhjO38RC4DJv90-wyEbkdcpNiJp6nvyaQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"time_last_updated\": 1599539177,\n    \"flashcard_set_id\": \"57c11af7-ee9c-4da4-ac6c-3327363f178e\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v2/flashcards/sync",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"flashcards",
+						"sync"
+					]
+				},
+				"description": "Fetch flashcards based on time differential"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete flashcard set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"1e53c758-d38b-4970-b274-f559296f5766\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/flashcard_set/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"flashcard_set",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch sets for user v1.1 (ABOUT TO BE DEPRECATED)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjc3MywiaWF0IjoxNTgyNDIxNTY2LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.B8sqaHc-QBo_j2gfqzyozXSkmxKThhGmJrrx7TPtz-H7rxOo-8URyK7jex08w4PbXIX86IWZF6_i8u8GRU9zpA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/fetch_flashcard_sets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"fetch_flashcard_sets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch sets for user (DEPRECATED)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth_token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/fetch_sets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"fetch_sets"
+					]
+				}
 			},
 			"response": []
 		},
@@ -98,7 +244,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"local_id\": 180,\n\t\"set_id\": \"1e53c758-d38b-4970-b274-f559296f5766\",\n\t\"term\": \"NEW FLASHCARD: What is 350 + 69?\",\n\t\"definition\": \"419\",\n\t\"position\": 3\n}"
+					"raw": "{\n\t\"local_id\": 180,\n\t\"set_id\": \"1e53c758-d38b-4970-b274-f559296f5766\",\n\t\"term\": \"Flashcard 4 - What is 350 + 69?\",\n\t\"definition\": \"419\",\n\t\"position\": 3\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/flashcard/create",
@@ -152,42 +298,6 @@
 			"response": []
 		},
 		{
-			"name": "Fetch sets for user (DEPRECATED)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxODUwOCwiaWF0IjoxNTgwODMyMTE0LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.dZZE6dyDc2ofnSl8fS1m25Wy18CD1_e6FEcFCRrnpwGLiyJaWcl_-bDjZUL0Q5ahb70YxA5BGUwXxFTSFAHrwg",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:5000/user/fetch_sets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"user",
-						"fetch_sets"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Fetch flashcards in set",
 			"request": {
 				"method": "POST",
@@ -224,42 +334,6 @@
 			"response": []
 		},
 		{
-			"name": "Delete flashcard set",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE1Njg5NjExNTYsImlzcyI6InNpbXBsZV9mbGFzaGNhcmRzX3NlcnZlciJ9.ByJi_SlN6fZIqaXzSihE9-_1z_UCcbGZEo1ckgwBMQH5yXLDNUeMHvNixt9zHD3TVXmkjphN3H3p0Q6jyYbINA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\": \"9f914fc9-67f6-4f2e-8e42-2dad6f331781\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/flashcard_set/delete",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"flashcard_set",
-						"delete"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Update flashcard positions",
 			"request": {
 				"method": "POST",
@@ -290,68 +364,6 @@
 					"path": [
 						"flashcard",
 						"update_positions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login with Facebook",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"auth_token\": \"EAAITkCLoCmQBAAW4CfpnEF1ivsAquGbttfrtEmbTOriZC40ksWX1ZAeKTrfoMTdBG7yTpmbXLryqXf3RRMT5YTIDCAfrIScyMosr6fGraL6FogRYN0ixFVpfIVZCOTNxkwUnMStOZCD6u2ckK3DaBNDokZBP4yNfCW4fPES22BLiCwbbWRqiX8TRfPZAmUuahsKDZCFicKAxQDXvA116FVuGTVnE057UJlvKMUP4f5qFAZDZD\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/onboarding/facebook",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"onboarding",
-						"facebook"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login with Google",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"auth_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjhjNThlMTM4NjE0YmQ1ODc0MjE3MmJkNTA4MGQxOTdkMmIyZGQyZjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0MzczOTIyNjYzNjYtMnA1OHZ2aTVkMnF0YTU1bDc4YW8yNGhsOXJjdWNraW4uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0MzczOTIyNjYzNjYtNTZtZmRmaGp1a2FvcWFnYW83YTMycjBqdWs2bXQ4cWsuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIzODA0OTM4Njc2NjMzNTgyODAiLCJlbWFpbCI6ImNoZXNzbm9uZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFsZXhhbmRlciBDaGlvdSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQUF1RTdtQm12QmNRdEJiNzM2YVpncU4wM3ZlTXl2eDFmVERkTnhCWmZhRW53UT1zOTYtYyIsImdpdmVuX25hbWUiOiJBbGV4YW5kZXIiLCJmYW1pbHlfbmFtZSI6IkNoaW91IiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1NzAzOTE1MTIsImV4cCI6MTU3MDM5NTExMn0.k9o3YHeAbLqUayhMxox-AcWV3Y5umJN7MpBlVhps9T0L7hbv5STzgZQKsSCgodknA2qeFGgTh1rWskmd9o0eiasEIG01nstNUyBhbCPtKjhhMyHtYXq0d7D0Af-hRdm0G1lSDBh1-oTnSiZk40doPmUQCXvTNqP5T74U8wF9lI_QRJ2k_nGyYArIGcEvnP1Trb2kV6OHuwZynfyNh00rSv2tSQ1e28ivJlZvGNMNGh42XRETZnSJhoJdIwhwGOZW7SNsIecya0NN72sPNCsc6ufXdVbfN1X0PTnNokucnNAy5a64AyF-fjU02Pon6hZsuLqGmpy7CCRoq9jQ09adfQ\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/onboarding/google",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"onboarding",
-						"google"
 					]
 				}
 			},
@@ -1042,42 +1054,6 @@
 					"path": [
 						"flashcard_set",
 						"search"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fetch sets for user v2 (5 at a time, pagination)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "auth_token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjc3MywiaWF0IjoxNTgyNDIxNTY2LCJpc3MiOiJzaW1wbGVfZmxhc2hjYXJkc19zZXJ2ZXIifQ.B8sqaHc-QBo_j2gfqzyozXSkmxKThhGmJrrx7TPtz-H7rxOo-8URyK7jex08w4PbXIX86IWZF6_i8u8GRU9zpA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:5000/user/fetch_flashcard_sets",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"user",
-						"fetch_flashcard_sets"
 					]
 				}
 			},
