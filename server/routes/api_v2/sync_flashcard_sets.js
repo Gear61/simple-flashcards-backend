@@ -23,7 +23,11 @@ module.exports = function(request, response) {
     const { timeUpdated, timeString } = dbLib.parseTime(time_last_updated);
 
     // TODO: Convert these to working left outer join or using with clauses if there is a performance need
-    const count_subquery = db.from('flashcard').where({'flashcard.flashcard_set_id': db.ref('flashcardset.id')}).count('flashcard.id');
+    const count_subquery = db
+      .from('flashcard')
+      .where({'flashcard.flashcard_set_id': db.ref('flashcardset.id')})
+      .where({'flashcard.deleted' : false})
+      .count('flashcard.id');
     const learned_subquery = count_subquery.clone().andWhere({'flashcard.learned': true});
     db
       .select(
