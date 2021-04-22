@@ -13,7 +13,7 @@ Any file changes will automatically be hot reloaded. To avoid watching certain f
 
 #### Connect to production database
 ```
-heroku pg:psql
+heroku pg:psql --app simple-flashcards-backend
 ```
 
 #### Connect to dev (free 10,000 rows version) database
